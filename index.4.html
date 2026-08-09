@@ -12,12 +12,12 @@
     header>div:first-child{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center}header>div:first-child h1{grid-column:2}.title-icon{grid-column:1;grid-row:1;width:clamp(40px,5vw,60px);height:auto;color:var(--clay)}header>div:first-child .sub{grid-column:1/-1}
   </style>
   <style>
-    @media(max-width:780px){.content{gap:10px}.stats{grid-template-columns:repeat(4,1fr);margin-top:0}.stats .last-roll{grid-column:1/-1;margin-top:3px;padding-top:10px!important;border-top:1px solid #e7dfcf!important}}
+    @media(max-width:780px){.content{gap:10px}.stats{grid-template-columns:repeat(4,1fr);margin-top:0}.stats .last-roll,.advanced-footer{grid-column:1/-1}.stats .last-roll{margin-top:3px;padding-top:10px!important;border-top:1px solid #e7dfcf!important}}
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
-  <style>*{font-family:"Nunito Sans",Arial,sans-serif!important}.chart-head #leader{display:none}.x{height:12px;line-height:1}.chart::after{bottom:22px}@media(min-width:781px){.stats{padding:15px}.stats h2{margin-bottom:7px;font-size:1.1rem}.stat{padding:7px 0}.stat-value{margin-top:0;font-size:1.5rem;line-height:1.05}.stat-note{font-size:.67rem}.recent-rolls{margin-top:3px;min-height:29px}.recent-roll{width:27px;height:27px;font-size:.9rem}}</style>
+  <style>*{font-family:"Nunito Sans",Arial,sans-serif!important}.chart-head #leader{display:none}.x{height:12px;line-height:1}.chart::after{bottom:22px}.advanced-footer{text-align:right;margin-top:10px}.advanced-link{color:var(--sea);font-size:.72rem;font-weight:800;text-decoration:none}.advanced-link:hover{text-decoration:underline;text-underline-offset:3px}@media(min-width:781px){.stats{padding:15px}.stats h2{margin-bottom:7px;font-size:1.1rem}.stat{padding:7px 0}.stat-value{margin-top:0;font-size:1.5rem;line-height:1.05}.stat-note{font-size:.67rem}.recent-rolls{margin-top:3px;min-height:29px}.recent-roll{width:27px;height:27px;font-size:.9rem}}</style>
 </head>
 <body><div class="app"><header><div><h1>Catan Dice</h1><p class="sub">A live record of how the dice are falling.</p></div><div class="total"><b id="total">0</b>total rolls</div></header>
   <main class="content"><section class="chart-card"><div class="chart-head"><div><h2>Roll distribution</h2><p>Actual rolls compared with two-dice probability</p></div><p id="leader">No rolls yet</p></div><div class="chart" id="chart" aria-label="Dice distribution"></div><p class="key"><span><i></i> Expected value</span><span>Solid bars are actual rolls</span></p></section><aside class="stats"><h2>Game snapshot</h2><div class="stat"><div class="stat-label">Most rolled</div><div class="stat-value" id="most">—</div><div class="stat-note" id="most-note">Record a roll</div></div><div class="stat"><div class="stat-label">Over expected</div><div class="stat-value" id="over">—</div><div class="stat-note" id="over-note">Expected variance</div></div><div class="stat"><div class="stat-label">Last roll</div><div class="stat-value" id="last">—</div><div class="stat-note">Undo is available below</div></div></aside></main>
@@ -31,6 +31,7 @@
   const lastStat = document.getElementById('last').parentElement;
   lastStat.classList.add('last-roll');
   lastStat.insertAdjacentHTML('beforebegin', `<div class="stat"><div class="stat-label">Unlucky</div><div class="stat-value" id="unlucky">—</div><div class="stat-note" id="unlucky-note">Expected variance</div></div><div class="stat"><div class="stat-label">Loser</div><div class="stat-value" id="loser">—</div><div class="stat-note" id="loser-note">Record a roll</div></div>`);
+  lastStat.insertAdjacentHTML('afterend', '<div class="advanced-footer"><a class="advanced-link" href="index.5.html">View advanced stats →</a></div>');
   const baseRender = render;
   document.querySelector('#most').previousElementSibling.textContent = 'Leader';
   document.querySelector('#over').previousElementSibling.textContent = 'Lucky';
@@ -38,9 +39,17 @@
   render = function () {
     baseRender();
     const total = faces.reduce((sum, roll) => sum + counts[roll], 0);
-    const unlucky = [...faces].sort((a, b) => (counts[a] - total * ways[a] / 36) - (counts[b] - total * ways[b] / 36) || a - b)[0];
-    const loser = [...faces].sort((a, b) => counts[a] - counts[b] || a - b)[0];
+    const favorLikely = (a, b) => ways[b] - ways[a] || a - b;
+    const leader = [...faces].sort((a, b) => counts[b] - counts[a] || favorLikely(a, b))[0];
+    const lucky = [...faces].sort((a, b) => (counts[b] - total * ways[b] / 36) - (counts[a] - total * ways[a] / 36) || favorLikely(a, b))[0];
+    const unlucky = [...faces].sort((a, b) => (counts[a] - total * ways[a] / 36) - (counts[b] - total * ways[b] / 36) || favorLikely(a, b))[0];
+    const loser = [...faces].sort((a, b) => counts[a] - counts[b] || favorLikely(a, b))[0];
+    const luckyDifference = counts[lucky] - total * ways[lucky] / 36;
     const unluckyDifference = counts[unlucky] - total * ways[unlucky] / 36;
+    document.getElementById('most').textContent = total ? leader : '—';
+    document.getElementById('most-note').textContent = total ? `${counts[leader]} roll${counts[leader] === 1 ? '' : 's'}` : 'Record a roll';
+    document.getElementById('over').textContent = total ? lucky : '—';
+    document.getElementById('over-note').textContent = total ? `${luckyDifference >= 0 ? '+' : ''}${luckyDifference.toFixed(1)} versus expected` : 'Expected variance';
     document.getElementById('unlucky').textContent = total ? unlucky : '—';
     document.getElementById('unlucky-note').textContent = total ? `${unluckyDifference >= 0 ? '+' : ''}${unluckyDifference.toFixed(1)} versus expected` : 'Expected variance';
     document.getElementById('loser').textContent = total ? loser : '—';
