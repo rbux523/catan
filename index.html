@@ -1,101 +1,68 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Catan Dice Tracker</title>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Catan Dice Tracker</title>
   <style>
-    :root { --ink:#263129; --paper:#f7f2e6; --sand:#e5c98b; --clay:#bd613e; --sea:#27747a; --pine:#3c6b4c; --line:#d8cfba; }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; color:var(--ink); font-family:Georgia, 'Times New Roman', serif; background:radial-gradient(circle at 15% 10%,#fffdf7 0 10%,transparent 35%),var(--paper); }
-    main { width:min(1050px, calc(100% - 32px)); margin:0 auto; padding:44px 0 56px; }
-    header { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; border-bottom:2px solid var(--ink); padding-bottom:20px; }
-    h1 { margin:0; font-size:clamp(2rem,5vw,3.7rem); line-height:.95; letter-spacing:-.055em; }
-    .subtitle { margin:10px 0 0; font-family:system-ui,sans-serif; font-size:.92rem; color:#5c655e; }
-    .total { text-align:right; font-family:system-ui,sans-serif; white-space:nowrap; }
-    .total strong { display:block; font-family:Georgia,serif; font-size:2.25rem; line-height:1; }
-    .total span { font-size:.68rem; text-transform:uppercase; letter-spacing:.12em; color:#5c655e; }
-    .section-label { margin:34px 0 13px; font:700 .72rem system-ui,sans-serif; letter-spacing:.15em; text-transform:uppercase; color:#5c655e; }
-    .rolls { display:grid; grid-template-columns:repeat(11, 1fr); gap:9px; }
-    .roll { min-height:83px; cursor:pointer; border:1px solid #a89c83; border-radius:5px; color:var(--ink); background:#fffdf7; font-family:Georgia,serif; transition:transform .12s, background .12s, box-shadow .12s; }
-    .roll:hover { transform:translateY(-3px); background:#fff8e6; box-shadow:0 4px 0 var(--sand); }
-    .roll:active { transform:translateY(1px); box-shadow:none; }
-    .roll .number { display:block; font-size:2rem; line-height:1; }
-    .roll .odds { display:block; margin-top:6px; font:600 .64rem system-ui,sans-serif; color:#6d746d; }
-    .roll.seven { background:var(--clay); color:white; border-color:#8d432d; }
-    .roll.seven .odds { color:#ffe0cc; }
-    .legend { margin:13px 0 0; font: .78rem system-ui,sans-serif; color:#5c655e; }
-    .dashboard { display:grid; grid-template-columns:1.2fr .8fr; gap:26px; margin-top:32px; }
-    .leaderboards { display:grid; grid-template-columns:repeat(2,1fr); gap:26px; margin-top:26px; }
-    .card { border:1px solid var(--line); background:rgba(255,253,247,.72); padding:21px; border-radius:7px; }
-    h2 { margin:0 0 16px; font-size:1.35rem; }
-    table { width:100%; border-collapse:collapse; font-family:system-ui,sans-serif; font-size:.83rem; }
-    th { font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:#6d746d; font-weight:700; }
-    th,td { padding:9px 4px; text-align:right; border-bottom:1px solid #e7dfce; }
-    th:first-child,td:first-child { text-align:left; }
-    tr:last-child td { border-bottom:none; }
-    .pip { display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--pine); color:white; font-weight:700; }
-    .pip.hot { background:var(--clay); }
-    .delta.plus { color:#19713e; font-weight:700; } .delta.minus { color:#a33c29; font-weight:700; }
-    .ranking { list-style:none; margin:0; padding:0; font-family:system-ui,sans-serif; }
-    .ranking li { display:grid; grid-template-columns:28px 1fr auto; gap:9px; align-items:center; min-height:37px; border-bottom:1px solid #e7dfce; font-size:.83rem; }
-    .ranking li:last-child { border-bottom:none; }.rank { color:#7a8278; font-size:.7rem; font-weight:700; }.rank-roll { font-weight:700; }.rank-value { font-variant-numeric:tabular-nums; }
-    .chart { display:flex; height:276px; align-items:flex-end; gap:8px; padding:14px 4px 0; border-bottom:1px solid var(--ink); }
-    .bar-wrap { height:100%; min-width:0; flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:6px; }
-    .bar-space { height:calc(100% - 27px); width:100%; display:flex; align-items:flex-end; position:relative; }
-    .bar { width:100%; min-height:2px; background:var(--sea); border-radius:3px 3px 0 0; position:relative; transition:height .25s ease; }
-    .bar.seven { background:var(--clay); }.expected { position:absolute; left:-2px; right:-2px; border-top:2px dashed #7c857b; z-index:2; }
-    .bar .value { position:absolute; top:-18px; left:50%; transform:translateX(-50%); font:700 .67rem system-ui,sans-serif; }
-    .bar-label { font:700 .7rem system-ui,sans-serif; }
-    .expected-key { display:flex; align-items:center; gap:7px; margin:16px 0 0; font:.74rem system-ui,sans-serif; color:#5c655e; }
-    .expected-key i { display:inline-block; width:20px; border-top:2px dashed #7c857b; }
-    .actions { display:flex; justify-content:flex-end; margin-top:20px; }
-    button.reset { border:0; background:none; color:#8a402d; cursor:pointer; font:600 .78rem system-ui,sans-serif; text-decoration:underline; text-underline-offset:3px; }
-    @media (max-width:760px) { main{padding-top:26px} header{align-items:flex-start; flex-direction:column}.total{text-align:left}.rolls{grid-template-columns:repeat(6,1fr)}.dashboard,.leaderboards{grid-template-columns:1fr}.roll{min-height:70px}.card{padding:16px} }
+    :root{--ink:#20312b;--paper:#f6f1e5;--card:#fffdf8;--sea:#24797d;--clay:#b85739;--line:#d9cfb9;--muted:#68736c}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 8% 0,#fffdf7,transparent 31%),var(--paper);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.app{width:min(1180px,calc(100% - 40px));margin:auto;min-height:100vh;padding:clamp(22px,5vw,58px) 0 32px;display:grid;grid-template-rows:auto 1fr auto;gap:24px}header{display:flex;justify-content:space-between;align-items:end;border-bottom:2px solid var(--ink);padding-bottom:18px}h1{margin:0;font:700 clamp(2rem,4vw,3.8rem) Georgia,serif;letter-spacing:-.07em;line-height:.88}.sub{margin:12px 0 0;color:var(--muted);font-size:.84rem}.total{text-align:right;text-transform:uppercase;letter-spacing:.12em;font-size:.66rem;font-weight:800;color:var(--muted)}.total b{display:block;color:var(--ink);font:700 2.7rem Georgia,serif;letter-spacing:-.07em;line-height:1}.content{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:24px}.chart-card,.stats{background:var(--card);border:1px solid var(--line);border-radius:10px}.chart-card{padding:clamp(17px,3vw,30px);display:flex;flex-direction:column;min-height:470px}.chart-head{display:flex;justify-content:space-between;align-items:end;gap:12px}.chart-head h2{font:700 1.4rem Georgia,serif;margin:0}.chart-head p,.key{font-size:.7rem;color:var(--muted);margin:0}.chart{flex:1;min-height:300px;display:flex;align-items:stretch;gap:clamp(5px,1.2vw,13px);padding:27px 4px 0;margin-top:12px;border-bottom:1px solid var(--ink)}.column{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px}.bar-zone{position:relative;flex:1;width:100%;display:flex;align-items:flex-end}.bar{position:relative;width:100%;min-height:3px;background:var(--sea);border-radius:5px 5px 0 0;transition:height .22s}.bar.seven{background:var(--clay)}.value{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:.68rem;font-weight:800}.expected{position:absolute;left:-3px;right:-3px;border-top:2px dashed #76817a;z-index:2}.x{font-size:.75rem;font-weight:800}.key{display:flex;gap:13px;margin-top:12px}.key i{display:inline-block;width:16px;border-top:2px dashed #76817a;vertical-align:middle;margin:-2px 4px 0 0}.stats{padding:20px}.stats h2{margin:0 0 15px;font:700 1.2rem Georgia,serif}.stat{padding:13px 0;border-top:1px solid #e7dfcf}.stat:first-of-type{border-top:0}.stat-label{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.stat-value{margin-top:3px;font:700 1.85rem Georgia,serif;letter-spacing:-.05em}.stat-note{font-size:.72rem;color:var(--muted)}.controls{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px}.controls-label{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}.rolls{display:grid;grid-template-columns:repeat(11,1fr);gap:7px}.roll{height:52px;border:1px solid #b8ab91;border-radius:7px;background:var(--paper);color:var(--ink);font:700 1.35rem Georgia,serif;cursor:pointer;transition:.13s}.roll:hover{transform:translateY(-2px);background:#eadba9;box-shadow:0 3px #c5a752}.roll:active{transform:translateY(1px);box-shadow:none}.roll.seven{background:var(--clay);border-color:#98442d;color:#fff}.actions{display:flex;gap:7px}.action{height:35px;border:1px solid #b8ab91;border-radius:6px;background:transparent;color:var(--ink);cursor:pointer;font-size:.7rem;font-weight:750;white-space:nowrap;padding:0 10px}.undo{border-color:#77a19d;color:#17666a}.reset{color:#91432e}.action:disabled{opacity:.38;cursor:not-allowed}@media(max-width:780px){.app{width:100%;padding:0;gap:0}.app header{padding:calc(18px + env(safe-area-inset-top)) 18px 15px}.content{display:block;padding:15px 15px 0}.chart-card{min-height:400px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px;padding:13px}.stats h2{display:none}.stat{border:0!important;padding:0}.stat-value{font-size:1.35rem}.controls{position:sticky;bottom:0;margin-top:14px;border-radius:10px 10px 0 0;border-bottom:0;padding:12px 15px calc(11px + env(safe-area-inset-bottom));display:block;box-shadow:0 -8px 22px #4d432014}.controls-label{display:block;margin-bottom:8px}.actions{margin-top:9px;display:grid;grid-template-columns:1fr 1fr}.action{width:100%}.rolls{gap:4px}.roll{height:47px;font-size:1.15rem}}@media(max-width:420px){h1{font-size:2rem}.chart-card{min-height:365px;padding:16px}.chart{min-height:250px;gap:4px}.total b{font-size:2.15rem}.stat-note{font-size:.64rem}}
+  </style>
+  <style>
+    .total b{margin-bottom:5px;line-height:.85}.chart{position:relative;border-bottom:0}.chart::after{content:"";position:absolute;left:4px;right:4px;bottom:24px;border-top:1px solid var(--ink);pointer-events:none}.column{gap:10px}.roll{display:grid;place-items:center;padding:0;font-family:ui-rounded,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums;line-height:1}.recent-rolls{display:flex;align-items:center;gap:5px;margin-top:8px;min-height:32px}.recent-roll{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--sea);color:#fff;font:700 1rem/1 ui-rounded,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:0;padding:0;box-shadow:inset 0 -2px #0002}.recent-roll.previous{background:#9ba6a0;color:#eef0eb;opacity:.62;transform:scale(.84)}.recent-roll.previous:nth-child(3){opacity:.48}.recent-roll.previous:nth-child(4){opacity:.35}.recent-roll.previous:nth-child(5){opacity:.23}.recent-empty{font:700 1.85rem Georgia,serif;letter-spacing:-.05em}@media(max-width:780px){.content{display:flex;flex-direction:column;min-height:0}.chart-card{flex:1;min-height:0}.chart{flex:1;min-height:0}.stats{flex:0 0 auto}}
+  </style>
+  <style>
+    header>div:first-child{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center}header>div:first-child h1{grid-column:2}.title-icon{grid-column:1;grid-row:1;width:clamp(40px,5vw,60px);height:auto;color:var(--clay)}header>div:first-child .sub{grid-column:1/-1}
+  </style>
+  <style>
+    @media(max-width:780px){.content{gap:10px}.stats{grid-template-columns:repeat(4,1fr);margin-top:0}.stats .last-roll,.advanced-footer,.turns-since{grid-column:1/-1}.stats .last-roll{margin-top:3px;padding-top:10px!important;border-top:1px solid #e7dfcf!important}}
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+  <style>*{font-family:"Nunito Sans",Arial,sans-serif!important}.chart-head #leader{display:none}.x{height:12px;line-height:1}.chart::after{bottom:22px}.undo:hover{background:#e5f1ef}.reset:hover{background:#faeae4}.advanced-footer{text-align:right;margin-top:10px}.advanced-link{color:var(--sea);font-size:.72rem;font-weight:800;text-decoration:none}.advanced-link:hover{text-decoration:underline;text-underline-offset:3px}@media(min-width:781px){.stats{display:flex;flex-direction:column;padding:15px}.stats h2{margin-bottom:7px;font-size:1.1rem}.stat{padding:7px 0}.stat-value{margin-top:0;font-size:1.5rem;line-height:1.05}.stat-note{font-size:.67rem}.recent-rolls{margin-top:3px;min-height:29px}.recent-roll{width:27px;height:27px;font-size:.9rem}.advanced-footer{margin-top:auto}}@media(max-width:780px){.stats .last-roll{position:relative;grid-column:1/span 2;border-top:0!important}.stats .last-roll::before{content:"";position:absolute;top:0;left:0;width:calc(200% + 9px);border-top:1px solid #e7dfcf}.advanced-footer{grid-column:3/-1;align-self:end;margin:0;text-align:right}.advanced-link{font-size:.64rem}}</style>
+  <style>
+    .turns-since{border-top:1px solid #e7dfcf;padding:8px 0}.turns-since-title{display:block;margin-bottom:6px;color:var(--muted);font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.turns-list{display:grid;grid-template-columns:repeat(11,1fr);gap:2px}.turn-cell{display:grid;justify-items:center;line-height:1}.turn-cell b{font-size:.62rem}.turn-cell span{margin-top:3px;color:var(--muted);font-size:.63rem;font-weight:800}@media(max-width:780px){.turns-since{margin-top:2px;padding-top:9px}.turn-cell b{font-size:.68rem}.turn-cell span{font-size:.68rem}}
   </style>
 </head>
-<body>
-  <main>
-    <header>
-      <div><h1>Catan Dice Tracker</h1><p class="subtitle">Tap each roll as it happens. The ledger keeps score.</p></div>
-      <div class="total"><strong id="total">0</strong><span>Total rolls</span></div>
-    </header>
-    <p class="section-label">Record a roll</p>
-    <section class="rolls" id="rolls" aria-label="Dice roll buttons"></section>
-    <p class="legend">Expected values use the probabilities from two six-sided dice. Your game is saved automatically in this browser.</p>
-    <section class="dashboard">
-      <article class="card"><h2>Roll ledger</h2><table><thead><tr><th>Roll</th><th>Actual</th><th>Expected</th><th>Difference</th></tr></thead><tbody id="ledger"></tbody></table></article>
-      <article class="card"><h2>Actual distribution</h2><div class="chart" id="chart" aria-label="Bar chart of actual rolls"></div><p class="expected-key"><i></i> Dashed marker: expected count</p></article>
-    </section>
-    <section class="leaderboards" aria-label="Roll leaderboards">
-      <article class="card"><h2>Most rolled</h2><ol class="ranking" id="most-rolled"></ol></article>
-      <article class="card"><h2>Most over expected</h2><ol class="ranking" id="over-expected"></ol></article>
-    </section>
-    <div class="actions"><button class="reset" id="reset">Start a new game</button></div>
-  </main>
-  <script>
-    const faces = [2,3,4,5,6,7,8,9,10,11,12];
-    const ways = {2:1,3:2,4:3,5:4,6:5,7:6,8:5,9:4,10:3,11:2,12:1};
-    const saved = JSON.parse(localStorage.getItem('catan-dice-tracker') || '{}');
-    let counts = Object.fromEntries(faces.map(n => [n, Number(saved[n]) || 0]));
-    const rollButtons = document.getElementById('rolls'), ledger = document.getElementById('ledger'), chart = document.getElementById('chart');
-    const mostRolled = document.getElementById('most-rolled'), overExpected = document.getElementById('over-expected');
-    const fmt = n => Number(n).toFixed(1);
-    function total() { return faces.reduce((sum,n) => sum + counts[n], 0); }
-    function render() {
-      const rolls = total(); document.getElementById('total').textContent = rolls;
-      rollButtons.innerHTML = faces.map(n => `<button class="roll ${n===7?'seven':''}" data-roll="${n}" aria-label="Record roll ${n}"><span class="number">${n}</span><span class="odds">${ways[n]}/36 chance</span></button>`).join('');
-      ledger.innerHTML = faces.map(n => { const expected = rolls * ways[n] / 36, diff = counts[n] - expected; return `<tr><td><span class="pip ${n===7?'hot':''}">${n}</span></td><td>${counts[n]}</td><td>${fmt(expected)}</td><td class="delta ${diff > .05 ? 'plus' : diff < -.05 ? 'minus' : ''}">${diff > 0 ? '+' : ''}${fmt(diff)}</td></tr>` }).join('');
-      const max = Math.max(1, ...faces.map(n => Math.max(counts[n], rolls * ways[n] / 36)));
-      chart.innerHTML = faces.map(n => { const expected = rolls * ways[n]/36; const h = counts[n]/max*100; const mark = expected/max*100; return `<div class="bar-wrap"><div class="bar-space"><i class="expected" style="bottom:${mark}%"></i><div class="bar ${n===7?'seven':''}" style="height:${h}%"><span class="value">${counts[n]||''}</span></div></div><span class="bar-label">${n}</span></div>` }).join('');
-      const ranking = (items, value) => items.map((n, i) => `<li><span class="rank">#${i + 1}</span><span class="rank-roll">Roll ${n}</span><span class="rank-value">${value(n)}</span></li>`).join('');
-      mostRolled.innerHTML = ranking([...faces].sort((a,b) => counts[b] - counts[a] || a - b), n => `${counts[n]} roll${counts[n] === 1 ? '' : 's'}`);
-      overExpected.innerHTML = ranking([...faces].sort((a,b) => (counts[b] - rolls * ways[b]/36) - (counts[a] - rolls * ways[a]/36) || a - b), n => { const d = counts[n] - rolls * ways[n]/36; return `${d >= 0 ? '+' : ''}${fmt(d)}`; });
-      localStorage.setItem('catan-dice-tracker', JSON.stringify(counts));
-    }
-    rollButtons.addEventListener('click', e => { const button = e.target.closest('[data-roll]'); if (button) { counts[button.dataset.roll]++; render(); } });
-    document.getElementById('reset').addEventListener('click', () => { if (confirm('Clear all recorded rolls and start a new game?')) { counts = Object.fromEntries(faces.map(n => [n,0])); render(); } });
-    render();
-  </script>
-</body>
-</html>
+<body><div class="app"><header><div><h1>Catan Dice</h1><p class="sub">A live record of how the dice are falling.</p></div><div class="total"><b id="total">0</b>total rolls</div></header>
+  <main class="content"><section class="chart-card"><div class="chart-head"><div><h2>Roll distribution</h2><p>Actual rolls compared with two-dice probability</p></div><p id="leader">No rolls yet</p></div><div class="chart" id="chart" aria-label="Dice distribution"></div><p class="key"><span><i></i> Expected value</span><span>Solid bars are actual rolls</span></p></section><aside class="stats"><h2>Game snapshot</h2><div class="stat"><div class="stat-label">Most rolled</div><div class="stat-value" id="most">—</div><div class="stat-note" id="most-note">Record a roll</div></div><div class="stat"><div class="stat-label">Over expected</div><div class="stat-value" id="over">—</div><div class="stat-note" id="over-note">Expected variance</div></div><div class="stat"><div class="stat-label">Last roll</div><div class="stat-value" id="last">—</div><div class="stat-note">Undo is available below</div></div></aside></main>
+  <footer class="controls"><span class="controls-label">Record a roll</span><div class="rolls" id="buttons"></div><div class="actions"><button class="action undo" id="undo">Undo</button><button class="action reset" id="reset">New game</button></div></footer>
+</div><script>
+  const faces=[2,3,4,5,6,7,8,9,10,11,12],ways={2:1,3:2,4:3,5:4,6:5,7:6,8:5,9:4,10:3,11:2,12:1};const saved=JSON.parse(localStorage.getItem('catan-responsive-tracker')||'{}');let counts=Object.fromEntries(faces.map(n=>[n,Number(saved.counts?.[n])||0])),history=Array.isArray(saved.history)?saved.history:[];const buttons=document.getElementById('buttons'),chart=document.getElementById('chart'),undo=document.getElementById('undo'),fmt=n=>n.toFixed(1);
+  function render(){const total=faces.reduce((s,n)=>s+counts[n],0),ranked=[...faces].sort((a,b)=>counts[b]-counts[a]||a-b),leader=ranked[0],over=[...faces].sort((a,b)=>(counts[b]-total*ways[b]/36)-(counts[a]-total*ways[a]/36)||a-b)[0],max=Math.max(1,...faces.map(n=>Math.max(counts[n],total*ways[n]/36)));document.getElementById('total').textContent=total;undo.disabled=!history.length;buttons.innerHTML=faces.map(n=>`<button class="roll ${n===7?'seven':''}" data-roll="${n}" aria-label="Record roll ${n}">${n}</button>`).join('');chart.innerHTML=faces.map(n=>{const actual=counts[n]/max*100,expected=total*ways[n]/36/max*100;return `<div class="column"><div class="bar-zone"><i class="expected" style="bottom:${expected}%"></i><div class="bar ${n===7?'seven':''}" style="height:${actual}%"><span class="value">${counts[n]||''}</span></div></div><span class="x">${n}</span></div>`}).join('');document.getElementById('leader').textContent=total?`Leader: ${leader}`:'No rolls yet';document.getElementById('most').textContent=total?leader:'—';document.getElementById('most-note').textContent=total?`${counts[leader]} roll${counts[leader]===1?'':'s'}`:'Record a roll';const d=counts[over]-total*ways[over]/36;document.getElementById('over').textContent=total?over:'—';document.getElementById('over-note').textContent=total?`${d>=0?'+':''}${fmt(d)} versus expected`:'Expected variance';document.getElementById('last').textContent=history.at(-1)??'—';localStorage.setItem('catan-responsive-tracker',JSON.stringify({counts,history}));}
+  buttons.addEventListener('click',e=>{const b=e.target.closest('[data-roll]');if(b){const n=+b.dataset.roll;counts[n]++;history.push(n);render()}});undo.addEventListener('click',()=>{const n=history.pop();if(n){counts[n]--;render()}});document.getElementById('reset').addEventListener('click',()=>{if(confirm('Clear this game and start a new one?')){counts=Object.fromEntries(faces.map(n=>[n,0]));history=[];render()}});render();
+</script><script>
+  document.querySelector('h1').insertAdjacentHTML('beforebegin', `<svg class="title-icon" viewBox="0 0 64 50" fill="none" aria-hidden="true"><rect x="4" y="13" width="29" height="29" rx="6" fill="currentColor" transform="rotate(-10 4 13)"/><circle cx="14" cy="25" r="3" fill="#fffdf8"/><circle cx="25" cy="31" r="3" fill="#fffdf8"/><rect x="31" y="5" width="29" height="29" rx="6" fill="currentColor" stroke="#fffdf8" stroke-width="2" transform="rotate(10 31 5)"/><circle cx="42" cy="16" r="3" fill="#fffdf8"/><circle cx="51" cy="23" r="3" fill="#fffdf8"/></svg>`);
+  const lastStat = document.getElementById('last').parentElement;
+  lastStat.classList.add('last-roll');
+  lastStat.insertAdjacentHTML('beforebegin', `<div class="stat"><div class="stat-label">Unlucky</div><div class="stat-value" id="unlucky">—</div><div class="stat-note" id="unlucky-note">Expected variance</div></div><div class="stat"><div class="stat-label">Loser</div><div class="stat-value" id="loser">—</div><div class="stat-note" id="loser-note">Record a roll</div></div>`);
+  lastStat.insertAdjacentHTML('beforebegin', '<section class="turns-since" aria-label="Turns since each roll"><span class="turns-since-title">Turns since last</span><div class="turns-list" id="turns-since-list"></div></section>');
+  lastStat.insertAdjacentHTML('afterend', '<div class="advanced-footer"><a class="advanced-link" href="advanced-stats.html">View advanced stats →</a></div>');
+  const baseRender = render;
+  document.querySelector('#most').previousElementSibling.textContent = 'Leader';
+  document.querySelector('#over').previousElementSibling.textContent = 'Lucky';
+  document.querySelector('#last + .stat-note')?.remove();
+  render = function () {
+    baseRender();
+    const total = faces.reduce((sum, roll) => sum + counts[roll], 0);
+    const favorLikely = (a, b) => ways[b] - ways[a] || a - b;
+    const leader = [...faces].sort((a, b) => counts[b] - counts[a] || favorLikely(a, b))[0];
+    const lucky = [...faces].sort((a, b) => (counts[b] - total * ways[b] / 36) - (counts[a] - total * ways[a] / 36) || favorLikely(a, b))[0];
+    const unlucky = [...faces].sort((a, b) => (counts[a] - total * ways[a] / 36) - (counts[b] - total * ways[b] / 36) || favorLikely(a, b))[0];
+    const loser = [...faces].sort((a, b) => counts[a] - counts[b] || favorLikely(a, b))[0];
+    const luckyDifference = counts[lucky] - total * ways[lucky] / 36;
+    const unluckyDifference = counts[unlucky] - total * ways[unlucky] / 36;
+    document.getElementById('most').textContent = total ? leader : '—';
+    document.getElementById('most-note').textContent = total ? `${counts[leader]} roll${counts[leader] === 1 ? '' : 's'}` : 'Record a roll';
+    document.getElementById('over').textContent = total ? lucky : '—';
+    document.getElementById('over-note').textContent = total ? `${luckyDifference >= 0 ? '+' : ''}${luckyDifference.toFixed(1)} versus expected` : 'Expected variance';
+    document.getElementById('unlucky').textContent = total ? unlucky : '—';
+    document.getElementById('unlucky-note').textContent = total ? `${unluckyDifference >= 0 ? '+' : ''}${unluckyDifference.toFixed(1)} versus expected` : 'Expected variance';
+    document.getElementById('loser').textContent = total ? loser : '—';
+    document.getElementById('loser-note').textContent = total ? `${counts[loser]} roll${counts[loser] === 1 ? '' : 's'}` : 'Record a roll';
+    document.getElementById('turns-since-list').innerHTML = faces.map(roll => { const last = history.lastIndexOf(roll); const turns = last === -1 ? history.length : history.length - last - 1; return `<span class="turn-cell"><b>${roll}</b><span>${turns}</span></span>`; }).join('');
+    const recent = history.slice(-5).reverse();
+    document.getElementById('last').innerHTML = recent.length
+      ? `<div class="recent-rolls">${recent.map((roll, index) => `<span class="recent-roll ${index ? 'previous' : ''}">${roll}</span>`).join('')}</div>`
+      : '<span class="recent-empty">—</span>';
+  };
+  render();
+</script></body></html>
