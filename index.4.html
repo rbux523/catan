@@ -12,12 +12,12 @@
     header>div:first-child{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center}header>div:first-child h1{grid-column:2}.title-icon{grid-column:1;grid-row:1;width:clamp(40px,5vw,60px);height:auto;color:var(--clay)}header>div:first-child .sub{grid-column:1/-1}
   </style>
   <style>
-    @media(max-width:780px){.stats{grid-template-columns:repeat(4,1fr)}.stats .last-roll{grid-column:1/-1;margin-top:3px;padding-top:10px!important;border-top:1px solid #e7dfcf!important}}
+    @media(max-width:780px){.content{gap:10px}.stats{grid-template-columns:repeat(4,1fr);margin-top:0}.stats .last-roll{grid-column:1/-1;margin-top:3px;padding-top:10px!important;border-top:1px solid #e7dfcf!important}}
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
-  <style>*{font-family:"Nunito Sans",Arial,sans-serif!important}@media(min-width:781px){.stats{padding:15px}.stats h2{margin-bottom:7px;font-size:1.1rem}.stat{padding:7px 0}.stat-value{margin-top:0;font-size:1.5rem;line-height:1.05}.stat-note{font-size:.67rem}.recent-rolls{margin-top:3px;min-height:29px}.recent-roll{width:27px;height:27px;font-size:.9rem}}</style>
+  <style>*{font-family:"Nunito Sans",Arial,sans-serif!important}.chart-head #leader{display:none}.x{height:12px;line-height:1}.chart::after{bottom:22px}@media(min-width:781px){.stats{padding:15px}.stats h2{margin-bottom:7px;font-size:1.1rem}.stat{padding:7px 0}.stat-value{margin-top:0;font-size:1.5rem;line-height:1.05}.stat-note{font-size:.67rem}.recent-rolls{margin-top:3px;min-height:29px}.recent-roll{width:27px;height:27px;font-size:.9rem}}</style>
 </head>
 <body><div class="app"><header><div><h1>Catan Dice</h1><p class="sub">A live record of how the dice are falling.</p></div><div class="total"><b id="total">0</b>total rolls</div></header>
   <main class="content"><section class="chart-card"><div class="chart-head"><div><h2>Roll distribution</h2><p>Actual rolls compared with two-dice probability</p></div><p id="leader">No rolls yet</p></div><div class="chart" id="chart" aria-label="Dice distribution"></div><p class="key"><span><i></i> Expected value</span><span>Solid bars are actual rolls</span></p></section><aside class="stats"><h2>Game snapshot</h2><div class="stat"><div class="stat-label">Most rolled</div><div class="stat-value" id="most">—</div><div class="stat-note" id="most-note">Record a roll</div></div><div class="stat"><div class="stat-label">Over expected</div><div class="stat-value" id="over">—</div><div class="stat-note" id="over-note">Expected variance</div></div><div class="stat"><div class="stat-label">Last roll</div><div class="stat-value" id="last">—</div><div class="stat-note">Undo is available below</div></div></aside></main>
