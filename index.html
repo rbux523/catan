@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catan Dice Tracker</title>
+  <style>
+    :root { --ink:#263129; --paper:#f7f2e6; --sand:#e5c98b; --clay:#bd613e; --sea:#27747a; --pine:#3c6b4c; --line:#d8cfba; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--ink); font-family:Georgia, 'Times New Roman', serif; background:radial-gradient(circle at 15% 10%,#fffdf7 0 10%,transparent 35%),var(--paper); }
+    main { width:min(1050px, calc(100% - 32px)); margin:0 auto; padding:44px 0 56px; }
+    header { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; border-bottom:2px solid var(--ink); padding-bottom:20px; }
+    h1 { margin:0; font-size:clamp(2rem,5vw,3.7rem); line-height:.95; letter-spacing:-.055em; }
+    .subtitle { margin:10px 0 0; font-family:system-ui,sans-serif; font-size:.92rem; color:#5c655e; }
+    .total { text-align:right; font-family:system-ui,sans-serif; white-space:nowrap; }
+    .total strong { display:block; font-family:Georgia,serif; font-size:2.25rem; line-height:1; }
+    .total span { font-size:.68rem; text-transform:uppercase; letter-spacing:.12em; color:#5c655e; }
+    .section-label { margin:34px 0 13px; font:700 .72rem system-ui,sans-serif; letter-spacing:.15em; text-transform:uppercase; color:#5c655e; }
+    .rolls { display:grid; grid-template-columns:repeat(11, 1fr); gap:9px; }
+    .roll { min-height:83px; cursor:pointer; border:1px solid #a89c83; border-radius:5px; color:var(--ink); background:#fffdf7; font-family:Georgia,serif; transition:transform .12s, background .12s, box-shadow .12s; }
+    .roll:hover { transform:translateY(-3px); background:#fff8e6; box-shadow:0 4px 0 var(--sand); }
+    .roll:active { transform:translateY(1px); box-shadow:none; }
+    .roll .number { display:block; font-size:2rem; line-height:1; }
+    .roll .odds { display:block; margin-top:6px; font:600 .64rem system-ui,sans-serif; color:#6d746d; }
+    .roll.seven { background:var(--clay); color:white; border-color:#8d432d; }
+    .roll.seven .odds { color:#ffe0cc; }
+    .legend { margin:13px 0 0; font: .78rem system-ui,sans-serif; color:#5c655e; }
+    .dashboard { display:grid; grid-template-columns:1.2fr .8fr; gap:26px; margin-top:32px; }
+    .leaderboards { display:grid; grid-template-columns:repeat(2,1fr); gap:26px; margin-top:26px; }
+    .card { border:1px solid var(--line); background:rgba(255,253,247,.72); padding:21px; border-radius:7px; }
+    h2 { margin:0 0 16px; font-size:1.35rem; }
+    table { width:100%; border-collapse:collapse; font-family:system-ui,sans-serif; font-size:.83rem; }
+    th { font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:#6d746d; font-weight:700; }
+    th,td { padding:9px 4px; text-align:right; border-bottom:1px solid #e7dfce; }
+    th:first-child,td:first-child { text-align:left; }
+    tr:last-child td { border-bottom:none; }
+    .pip { display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--pine); color:white; font-weight:700; }
+    .pip.hot { background:var(--clay); }
+    .delta.plus { color:#19713e; font-weight:700; } .delta.minus { color:#a33c29; font-weight:700; }
+    .ranking { list-style:none; margin:0; padding:0; font-family:system-ui,sans-serif; }
+    .ranking li { display:grid; grid-template-columns:28px 1fr auto; gap:9px; align-items:center; min-height:37px; border-bottom:1px solid #e7dfce; font-size:.83rem; }
+    .ranking li:last-child { border-bottom:none; }.rank { color:#7a8278; font-size:.7rem; font-weight:700; }.rank-roll { font-weight:700; }.rank-value { font-variant-numeric:tabular-nums; }
+    .chart { display:flex; height:276px; align-items:flex-end; gap:8px; padding:14px 4px 0; border-bottom:1px solid var(--ink); }
+    .bar-wrap { height:100%; min-width:0; flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:6px; }
+    .bar-space { height:calc(100% - 27px); width:100%; display:flex; align-items:flex-end; position:relative; }
+    .bar { width:100%; min-height:2px; background:var(--sea); border-radius:3px 3px 0 0; position:relative; transition:height .25s ease; }
+    .bar.seven { background:var(--clay); }.expected { position:absolute; left:-2px; right:-2px; border-top:2px dashed #7c857b; z-index:2; }
+    .bar .value { position:absolute; top:-18px; left:50%; transform:translateX(-50%); font:700 .67rem system-ui,sans-serif; }
+    .bar-label { font:700 .7rem system-ui,sans-serif; }
+    .expected-key { display:flex; align-items:center; gap:7px; margin:16px 0 0; font:.74rem system-ui,sans-serif; color:#5c655e; }
+    .expected-key i { display:inline-block; width:20px; border-top:2px dashed #7c857b; }
+    .actions { display:flex; justify-content:flex-end; margin-top:20px; }
+    button.reset { border:0; background:none; color:#8a402d; cursor:pointer; font:600 .78rem system-ui,sans-serif; text-decoration:underline; text-underline-offset:3px; }
+    @media (max-width:760px) { main{padding-top:26px} header{align-items:flex-start; flex-direction:column}.total{text-align:left}.rolls{grid-template-columns:repeat(6,1fr)}.dashboard,.leaderboards{grid-template-columns:1fr}.roll{min-height:70px}.card{padding:16px} }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><h1>Catan Dice Tracker</h1><p class="subtitle">Tap each roll as it happens. The ledger keeps score.</p></div>
+      <div class="total"><strong id="total">0</strong><span>Total rolls</span></div>
+    </header>
+    <p class="section-label">Record a roll</p>
+    <section class="rolls" id="rolls" aria-label="Dice roll buttons"></section>
+    <p class="legend">Expected values use the probabilities from two six-sided dice. Your game is saved automatically in this browser.</p>
+    <section class="dashboard">
+      <article class="card"><h2>Roll ledger</h2><table><thead><tr><th>Roll</th><th>Actual</th><th>Expected</th><th>Difference</th></tr></thead><tbody id="ledger"></tbody></table></article>
+      <article class="card"><h2>Actual distribution</h2><div class="chart" id="chart" aria-label="Bar chart of actual rolls"></div><p class="expected-key"><i></i> Dashed marker: expected count</p></article>
+    </section>
+    <section class="leaderboards" aria-label="Roll leaderboards">
+      <article class="card"><h2>Most rolled</h2><ol class="ranking" id="most-rolled"></ol></article>
+      <article class="card"><h2>Most over expected</h2><ol class="ranking" id="over-expected"></ol></article>
+    </section>
+    <div class="actions"><button class="reset" id="reset">Start a new game</button></div>
+  </main>
+  <script>
+    const faces = [2,3,4,5,6,7,8,9,10,11,12];
+    const ways = {2:1,3:2,4:3,5:4,6:5,7:6,8:5,9:4,10:3,11:2,12:1};
+    const saved = JSON.parse(localStorage.getItem('catan-dice-tracker') || '{}');
+    let counts = Object.fromEntries(faces.map(n => [n, Number(saved[n]) || 0]));
+    const rollButtons = document.getElementById('rolls'), ledger = document.getElementById('ledger'), chart = document.getElementById('chart');
+    const mostRolled = document.getElementById('most-rolled'), overExpected = document.getElementById('over-expected');
+    const fmt = n => Number(n).toFixed(1);
+    function total() { return faces.reduce((sum,n) => sum + counts[n], 0); }
+    function render() {
+      const rolls = total(); document.getElementById('total').textContent = rolls;
+      rollButtons.innerHTML = faces.map(n => `<button class="roll ${n===7?'seven':''}" data-roll="${n}" aria-label="Record roll ${n}"><span class="number">${n}</span><span class="odds">${ways[n]}/36 chance</span></button>`).join('');
+      ledger.innerHTML = faces.map(n => { const expected = rolls * ways[n] / 36, diff = counts[n] - expected; return `<tr><td><span class="pip ${n===7?'hot':''}">${n}</span></td><td>${counts[n]}</td><td>${fmt(expected)}</td><td class="delta ${diff > .05 ? 'plus' : diff < -.05 ? 'minus' : ''}">${diff > 0 ? '+' : ''}${fmt(diff)}</td></tr>` }).join('');
+      const max = Math.max(1, ...faces.map(n => Math.max(counts[n], rolls * ways[n] / 36)));
+      chart.innerHTML = faces.map(n => { const expected = rolls * ways[n]/36; const h = counts[n]/max*100; const mark = expected/max*100; return `<div class="bar-wrap"><div class="bar-space"><i class="expected" style="bottom:${mark}%"></i><div class="bar ${n===7?'seven':''}" style="height:${h}%"><span class="value">${counts[n]||''}</span></div></div><span class="bar-label">${n}</span></div>` }).join('');
+      const ranking = (items, value) => items.map((n, i) => `<li><span class="rank">#${i + 1}</span><span class="rank-roll">Roll ${n}</span><span class="rank-value">${value(n)}</span></li>`).join('');
+      mostRolled.innerHTML = ranking([...faces].sort((a,b) => counts[b] - counts[a] || a - b), n => `${counts[n]} roll${counts[n] === 1 ? '' : 's'}`);
+      overExpected.innerHTML = ranking([...faces].sort((a,b) => (counts[b] - rolls * ways[b]/36) - (counts[a] - rolls * ways[a]/36) || a - b), n => { const d = counts[n] - rolls * ways[n]/36; return `${d >= 0 ? '+' : ''}${fmt(d)}`; });
+      localStorage.setItem('catan-dice-tracker', JSON.stringify(counts));
+    }
+    rollButtons.addEventListener('click', e => { const button = e.target.closest('[data-roll]'); if (button) { counts[button.dataset.roll]++; render(); } });
+    document.getElementById('reset').addEventListener('click', () => { if (confirm('Clear all recorded rolls and start a new game?')) { counts = Object.fromEntries(faces.map(n => [n,0])); render(); } });
+    render();
+  </script>
+</body>
+</html>
