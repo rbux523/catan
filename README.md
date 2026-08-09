@@ -9,11 +9,11 @@ A lightweight, browser-based tracker for Catan dice rolls. Record each roll as i
 
 ## Use it
 
-Open `index.html` in a modern browser, then tap or click the rolled total from 2–12. The tracker automatically saves the current game in browser `localStorage`.
+Open `index.html` in a modern browser, then tap or click the rolled total from 2–12. Each game's history is stored in its URL, so the browser's normal copy or share action sends the exact game state.
 
 - **Undo** removes the most recently recorded roll.
-- **New game** clears the saved game after confirmation.
-- **View advanced stats** opens the detailed view using the same saved game data.
+- **New game** opens a fresh game in a new tab, leaving the current game untouched.
+- **View advanced stats** carries the same game history into the detailed view.
 
 ## How expected values work
 
