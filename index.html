@@ -44,6 +44,16 @@
       .compact-height .turn-cell b,.compact-height .turn-cell span{font-size:.58rem}
       .compact-height .recent-rolls{min-height:25px}
       .compact-height .recent-roll{width:24px;height:24px;font-size:.78rem}
+      .short-viewport header{padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:8px}
+      .short-viewport header>div:first-child{column-gap:5px}
+      .short-viewport header>div:first-child h1{font-size:1.6rem}
+      .short-viewport .title-icon{width:34px}
+      .short-viewport .total b{font-size:1.9rem}
+      .short-viewport .sub{margin-top:2px;font-size:.76rem}
+      .short-viewport .roll{font-size:1rem}
+      .short-viewport .roll{height:40px}
+      .short-viewport .action{height:31px}
+      .short-viewport .actions{margin-top:6px}
     }
     .roll,.action{touch-action:manipulation}
   </style>
@@ -96,7 +106,7 @@
   const applySharedHistory=()=>{const encoded=location.hash.match(/^#r=([0-9a-z]*)$/i)?.[1];if(encoded===undefined)return;const shared=[...encoded].map(character=>parseInt(character,36));if(!shared.every(roll=>faces.includes(roll)))return;history=shared;counts=Object.fromEntries(faces.map(roll=>[roll,history.filter(value=>value===roll).length]));render()};
   window.addEventListener('hashchange',applySharedHistory);
   window.addEventListener('pageshow',event=>{if(event.persisted)applySharedHistory()});
-  const syncVisibleHeight=()=>{const height=Math.round(window.visualViewport?.height||window.innerHeight);document.documentElement.style.setProperty('--visible-height',`${height}px`);document.documentElement.classList.toggle('compact-height',height<750)};
+  const syncVisibleHeight=()=>{const height=Math.round(window.visualViewport?.height||window.innerHeight);document.documentElement.style.setProperty('--visible-height',`${height}px`);document.documentElement.classList.toggle('compact-height',height<750);document.documentElement.classList.toggle('short-viewport',height<650)};
   syncVisibleHeight();
   window.visualViewport?.addEventListener('resize',syncVisibleHeight);
   window.addEventListener('orientationchange',syncVisibleHeight);
