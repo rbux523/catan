@@ -107,7 +107,7 @@
   const applySharedHistory=()=>{const encoded=location.hash.match(/^#r=([0-9a-z]*)$/i)?.[1];if(encoded===undefined)return;const shared=[...encoded].map(character=>parseInt(character,36));if(!shared.every(roll=>faces.includes(roll)))return;history=shared;counts=Object.fromEntries(faces.map(roll=>[roll,history.filter(value=>value===roll).length]));render()};
   window.addEventListener('hashchange',applySharedHistory);
   window.addEventListener('pageshow',event=>{if(event.persisted)applySharedHistory()});
-  const syncVisibleHeight=()=>{const height=Math.round(window.visualViewport?.height||window.innerHeight);document.documentElement.style.setProperty('--visible-height',`${height}px`);document.documentElement.classList.toggle('compact-height',height<750);document.documentElement.classList.toggle('short-viewport',height<650)};
+  const syncVisibleHeight=()=>{const viewport=window.visualViewport;if(viewport&&viewport.scale>1.01)return;const height=Math.round(viewport?.height||window.innerHeight);document.documentElement.style.setProperty('--visible-height',`${height}px`);document.documentElement.classList.toggle('compact-height',height<750);document.documentElement.classList.toggle('short-viewport',height<650)};
   syncVisibleHeight();
   window.visualViewport?.addEventListener('resize',syncVisibleHeight);
   window.addEventListener('orientationchange',syncVisibleHeight);
