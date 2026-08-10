@@ -11,6 +11,8 @@ A lightweight, browser-based tracker for Catan dice rolls. Record each roll as i
 
 Open `index.html` in a modern browser, then tap or click the rolled total from 2–12. Each game's history is stored in its URL, so the browser's normal copy or share action sends the exact game state.
 
+[Start a new game](https://rbux523.github.io/catan/index.html#r=)
+
 - **Undo** removes the most recently recorded roll.
 - **New game** opens a fresh game in a new tab, leaving the current game untouched.
 - **View advanced stats** carries the same game history into the detailed view.
