@@ -22,6 +22,7 @@ Open `index.html` in a modern browser, then tap or click the rolled total from 2
 - [Example game 3](https://rbux523.github.io/catan/index.html#r=ab43397673665597778576bb86899b4699a5a49957b7a567baa6975c7b5587a59459845b)
 - [Example game 4](https://rbux523.github.io/catan/index.html#r=a88476a5477a285769625654ca9927765bcb6757b7a37a57c96739738a94a7843876886b)
 - [Example game 5](https://rbux523.github.io/catan/index.html#r=44a787aa7c584879ba77a876883cb779b9942838578a4a86495a6787b2c7a6b84a584378)
+- [Example game 6](http://rbux523.github.io/catan/index.html#r=8259b7979c8477c499a37489454c9466a93769987a766a3473a8c9a95939876ba4579456)
 
 ## How expected values work
 
