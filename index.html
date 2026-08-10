@@ -57,6 +57,7 @@
     }
     .roll,.action{touch-action:manipulation}
   </style>
+  <style>@media(max-width:410px){header{gap:6px}header>div:first-child h1{font-size:1.7rem;white-space:nowrap}}</style>
 </head>
 <body><div class="app"><header><div><h1>Catan Dice</h1><p class="sub">A live record of how the dice are falling.</p></div><div class="total"><b id="total">0</b>total rolls</div></header>
   <main class="content"><section class="chart-card"><div class="chart-head"><div><h2>Roll distribution</h2><p>Actual rolls compared with two-dice probability</p></div><p id="leader">No rolls yet</p></div><div class="chart" id="chart" aria-label="Dice distribution"></div><p class="key"><span><i></i> Expected value</span><span>Solid bars are actual rolls</span></p></section><aside class="stats"><h2>Game snapshot</h2><div class="stat"><div class="stat-label">Most rolled</div><div class="stat-value" id="most">—</div><div class="stat-note" id="most-note">Record a roll</div></div><div class="stat"><div class="stat-label">Over expected</div><div class="stat-value" id="over">—</div><div class="stat-note" id="over-note">Expected variance</div></div><div class="stat"><div class="stat-label">Last roll</div><div class="stat-value" id="last">—</div><div class="stat-note">Undo is available below</div></div></aside></main>
