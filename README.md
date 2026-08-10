@@ -33,6 +33,28 @@ Expected count is calculated as:
 total rolls × (ways to roll that number ÷ 36)
 ```
 
+## Distribution status
+
+Advanced Stats compares the game's overall roll distribution with the normal variation expected from fair two-dice rolls.
+
+First, it calculates **rolls away from expected**:
+
+```text
+½ × sum of |actual count − expected count| for rolls 2–12
+```
+
+This is the number of rolls that would need to shift from overrepresented totals to underrepresented totals to exactly match Catan odds. The app then calculates the average value of that same measure for a fair game with the same number of rolls, using the binomial probability for each total. Comparing the two gives the distribution status.
+
+| Relative deviation | Status |
+| --- | --- |
+| Under 60% of average fair-game variation | Very even |
+| 60–85% | More even than usual |
+| 85–130% | Typical |
+| 130–180% | Noticeably uneven |
+| Over 180% | Very uneven |
+
+This is a descriptive comparison, not a claim that the dice are fair or unfair.
+
 ## Run locally
 
 No build step or dependencies are required. Open `index.html` directly, or serve the repository with any static-file server.
