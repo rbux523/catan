@@ -13,10 +13,8 @@
   </style>
   <style>
     .summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .stat-card{display:flex;min-height:220px;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-    .stat-card .stat-value,.stat-card .games-value,.stat-card .percent-value{font-size:clamp(2.5rem,7vw,5.2rem)}
-    .stat-card .stat-copy{margin-bottom:0;text-align:center}
-    @media(max-width:560px){.summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.stat-card{min-height:154px;padding:12px!important}.stat-card .stat-value,.stat-card .games-value,.stat-card .percent-value{font-size:2.75rem}.stat-card .stat-copy{font-size:.58rem;line-height:1.25}}
+    .stat-card{display:grid;grid-template-rows:auto 1fr;min-height:220px;text-align:left}.stat-card .stat-value,.stat-card .games-value,.stat-card .percent-value{display:grid;place-items:center;align-self:center;justify-self:center;width:clamp(96px,10vw,138px);aspect-ratio:1;margin:12px 0 0;padding:0;border-radius:50%;background:var(--sea);color:#fff;font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.08em;line-height:1}
+    @media(max-width:560px){.summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.stat-card{min-height:154px;padding:12px!important}.stat-card .stat-value,.stat-card .games-value,.stat-card .percent-value{width:clamp(64px,20vw,82px);font-size:clamp(1.45rem,6vw,2.2rem)}}
   </style>
 </head>
 <body>
@@ -32,7 +30,7 @@
     <section class="summary-grid" id="summary" hidden>
       <article class="card stat-card"><p class="stat-label">Wins</p><p class="stat-value" id="wins">0</p></article>
       <article class="card stat-card"><p class="stat-label">Games played</p><p class="stat-value games-value" id="games-played">0</p></article>
-      <article class="card stat-card"><p class="stat-label">Win percentage</p><p class="stat-value percent-value" id="win-percentage">0%</p><p class="stat-copy" id="win-copy"></p></article>
+      <article class="card stat-card"><p class="stat-label">Win percentage</p><p class="stat-value percent-value" id="win-percentage">0%</p></article>
     </section>
     <section class="card" id="games-card" hidden aria-labelledby="games-heading">
       <h2 id="games-heading">Games played</h2>
@@ -57,11 +55,10 @@
         document.getElementById('profile-icon').src=icon.icon;
         document.getElementById('profile-icon').alt=`${icon.animal} icon`;
         document.getElementById('player-name').textContent=name;
-        document.getElementById('player-animal').textContent=`${icon.animal} · ${played.length} game${played.length===1?'':'s'} played`;
+        document.getElementById('player-animal').textContent=icon.animal;
         document.getElementById('wins').textContent=wins;
         document.getElementById('games-played').textContent=played.length;
         document.getElementById('win-percentage').textContent=`${Math.round(wins/played.length*100)}%`;
-        document.getElementById('win-copy').textContent=`${wins} win${wins===1?'':'s'} in ${played.length} game${played.length===1?'':'s'} played.`;
         document.getElementById('games-list').innerHTML=played.map(game=>{const won=game.winner===name;return `<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(escapeHTML).join(', ')}</td><td class="result ${won?'won':''}">${won?'Won':'Played'}</td><td><a class="game-link" href="advanced-stats.html#r=${game.rolls}">View stats →</a></td></tr>`}).join('');
         document.getElementById('profile').hidden=false;
         document.getElementById('summary').hidden=false;
