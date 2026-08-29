@@ -46,7 +46,7 @@
     fetch('games.json')
       .then(response=>{if(!response.ok)throw new Error('Could not load the game log.');return response.json()})
       .then(games=>{
-        table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td><a class="game-link" href="index.html#r=${game.rolls}">Open tracker →</a></td></tr>`).join('');
+        table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td><a class="game-link" href="advanced-stats.html#r=${game.rolls}">View stats →</a></td></tr>`).join('');
         status.hidden=true;
         table.hidden=false;
       })
