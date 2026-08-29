@@ -9,5 +9,8 @@
   "Renee": {"animal":"Rabbit","icon":"icons/rabbit.svg"},
   "Carli": {"animal":"Otter","icon":"icons/otter.svg"},
   "Meghan": {"animal":"Deer","icon":"icons/deer.svg"},
+  "Chris": {"animal":"Raccoon","icon":"icons/raccoon.svg"},
+  "Ben": {"animal":"Hedgehog","icon":"icons/hedgehog.svg"},
+  "Justin": {"animal":"Dog","icon":"icons/dog.svg"},
   "fallback": {"animal":"Panda","icon":"icons/panda.svg"}
 }
