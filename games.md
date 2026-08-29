@@ -10,3 +10,4 @@
 | [Game 6](https://rbux523.github.io/catan/index.html#r=975a556868b8496aba969588899a38362689ba5a68663) | Aug 23, 2026 | Ryan, Will, Dylan | Ryan |
 | [Game 7](https://rbux523.github.io/catan/index.html#r=a96955696c37c87a76b8985a5a87785845585557c97647493699) | Aug 27, 2026 | Ryan, Will, Carli, Andrew, Jacob, Dylan | Ryan |
 | [Game 8](https://rbux523.github.io/catan/index.html#r=48c539b55656b7348b5784893b5377ab4752777848838723625867656859556a5) | Aug 27, 2026 | Ryan, Will, Carli, Andrew, Jacob, Dylan | Jacob |
+| [Game 9](https://rbux523.github.io/catan/index.html#r=c745697757698b457788768792554527b95547597865548626a9) | Aug 28, 2026 | Ryan, Carli, Andrew, Jacob | Ryan |
