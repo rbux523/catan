@@ -1,0 +1,13 @@
+{
+  "Ryan": {"animal":"Fox","icon":"icons/fox.svg"},
+  "Andrew": {"animal":"Owl","icon":"icons/owl.svg"},
+  "Dylan": {"animal":"Bear","icon":"icons/bear.svg"},
+  "Jacob": {"animal":"Wolf","icon":"icons/wolf.svg"},
+  "Mike": {"animal":"Turtle","icon":"icons/turtle.svg"},
+  "Will": {"animal":"Falcon","icon":"icons/falcon.svg"},
+  "Isa": {"animal":"Cat","icon":"icons/cat.svg"},
+  "Renee": {"animal":"Rabbit","icon":"icons/rabbit.svg"},
+  "Carli": {"animal":"Otter","icon":"icons/otter.svg"},
+  "Meghan": {"animal":"Deer","icon":"icons/deer.svg"},
+  "fallback": {"animal":"Panda","icon":"icons/panda.svg"}
+}
