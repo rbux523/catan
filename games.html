@@ -20,7 +20,8 @@
     .card{margin-top:28px;padding:clamp(15px,3vw,28px)}
     .game-link{display:inline;color:var(--sea);background:transparent;width:auto;min-width:0;height:auto;padding:0;border-radius:0;font-size:.78rem;font-weight:800;text-decoration:none}
     .game-link:hover{background:transparent;color:var(--sea);text-decoration:underline;text-underline-offset:3px}
-    @media(max-width:560px){.page{width:min(100% - 26px,1180px);padding-top:24px}.card{margin-top:17px;padding:14px 10px}.game-link{display:inline;font-size:.78rem}.game-link::before{content:none}td:first-child{float:none;margin:0 0 4px;font-size:.78rem;color:var(--muted)}td:nth-child(2){margin:0;font-size:.76rem;color:var(--muted)}td:nth-child(3){margin-top:5px;font-size:.82rem;color:var(--ink)}td:nth-child(4){margin-top:7px}}
+    .players-card h2{margin:0;font-size:1.3rem;letter-spacing:-.03em}.players-card p{margin:4px 0 18px;color:var(--muted);font-size:.78rem}.player-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0;padding:0;list-style:none}.player{display:flex;align-items:center;gap:10px;padding:9px 10px;border:1px solid #e7dfcf;border-radius:8px;background:var(--card)}.player-icon{flex:0 0 auto;width:38px;height:38px}.player-name{display:block;font-size:.86rem;font-weight:800;line-height:1.1}.player-animal{display:block;margin-top:2px;color:var(--muted);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    @media(max-width:560px){.page{width:min(100% - 26px,1180px);padding-top:24px}.card{margin-top:17px;padding:14px 10px}.game-link{display:inline;font-size:.78rem}.game-link::before{content:none}td:first-child{float:none;margin:0 0 4px;font-size:.78rem;color:var(--muted)}td:nth-child(2){margin:0;font-size:.76rem;color:var(--muted)}td:nth-child(3){margin-top:5px;font-size:.82rem;color:var(--ink)}td:nth-child(4){margin-top:7px}.players-card h2{font-size:1.15rem}.player-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.player{gap:8px;padding:8px}.player-icon{width:34px;height:34px}.player-name{font-size:.78rem}.player-animal{font-size:.57rem}}
   </style>
 </head>
 <body>
@@ -38,17 +39,38 @@
         <tbody></tbody>
       </table>
     </section>
+    <section class="card players-card" id="players-card" hidden aria-labelledby="players-heading">
+      <h2 id="players-heading">Players</h2>
+      <p>Everyone who has joined a recorded game.</p>
+      <ul class="player-list" id="player-list"></ul>
+    </section>
   </main>
   <script>
     const formatDate=date=>new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(`${date}T00:00:00Z`));
     const table=document.getElementById('games-table');
     const status=document.getElementById('status');
+    const playerIcons={
+      Ryan:{animal:'Fox',color:'#c45e3d',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="m8 17 4-12 10 7h4l10-7 4 12v15c0 7-7 11-16 11S8 39 8 32z"/><path fill="#fffdf8" d="M14 27c3 9 17 12 20 0l-5 2h-10z"/><circle cx="18" cy="23" r="2" fill="#20312b"/><circle cx="30" cy="23" r="2" fill="#20312b"/><path d="M22 30h4l-2 3z" fill="#20312b"/></svg>'},
+      Andrew:{animal:'Owl',color:'#687da4',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M10 17 14 8l7 5a12 12 0 0 1 6 0l7-5 4 9v15c0 7-6 11-14 11S10 39 10 32z"/><circle cx="18" cy="25" r="7" fill="#fffdf8"/><circle cx="30" cy="25" r="7" fill="#fffdf8"/><circle cx="18" cy="25" r="2" fill="#20312b"/><circle cx="30" cy="25" r="2" fill="#20312b"/><path d="m21 32 3-5 3 5z" fill="#d9a936"/></svg>'},
+      Dylan:{animal:'Bear',color:'#8d6a43',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="14" r="7" fill="currentColor"/><circle cx="34" cy="14" r="7" fill="currentColor"/><circle cx="24" cy="27" r="17" fill="currentColor"/><ellipse cx="24" cy="32" rx="8" ry="6" fill="#fffdf8"/><circle cx="18" cy="25" r="2" fill="#20312b"/><circle cx="30" cy="25" r="2" fill="#20312b"/><path d="M21 30h6l-3 3z" fill="#20312b"/></svg>'},
+      Jacob:{animal:'Wolf',color:'#54899a',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="m8 17 3-13 11 8h4l11-8 3 13v16c0 7-7 10-16 10S8 40 8 33z"/><path fill="#fffdf8" d="M14 29c2 10 18 10 20 0l-5 2h-10z"/><circle cx="18" cy="23" r="2" fill="#20312b"/><circle cx="30" cy="23" r="2" fill="#20312b"/><path d="m21 30 3-3 3 3-3 3z" fill="#20312b"/></svg>'},
+      Mike:{animal:'Turtle',color:'#579365',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="26" r="16" fill="currentColor"/><path d="M24 11v30M10 26h28M14 16l20 20M34 16 14 36" stroke="#fffdf8" stroke-width="2" opacity=".8"/><circle cx="24" cy="8" r="6" fill="currentColor"/><circle cx="22" cy="7" r="1.5" fill="#20312b"/><circle cx="26" cy="7" r="1.5" fill="#20312b"/></svg>'},
+      Will:{animal:'Falcon',color:'#816ca6',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M24 5c10 2 15 10 14 22-1 10-7 16-14 16S10 37 10 27C9 15 14 7 24 5z"/><path fill="#fffdf8" d="M15 24h18l-9 14z"/><circle cx="19" cy="21" r="2" fill="#20312b"/><circle cx="29" cy="21" r="2" fill="#20312b"/><path d="m21 27 3-6 3 6z" fill="#d9a936"/></svg>'},
+      Isa:{animal:'Cat',color:'#cf6f92',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="m9 16 2-12 11 8h4l11-8 2 12v17c0 7-7 10-15 10S9 40 9 33z"/><circle cx="18" cy="25" r="2" fill="#fffdf8"/><circle cx="30" cy="25" r="2" fill="#fffdf8"/><path d="M22 30h4l-2 2zM11 30h9m8 0h9" stroke="#fffdf8" stroke-width="1.5" stroke-linecap="round"/></svg>'},
+      Renee:{animal:'Rabbit',color:'#b58761',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="16" cy="13" rx="5" ry="11" fill="currentColor" transform="rotate(-12 16 13)"/><ellipse cx="32" cy="13" rx="5" ry="11" fill="currentColor" transform="rotate(12 32 13)"/><circle cx="24" cy="28" r="16" fill="currentColor"/><ellipse cx="24" cy="33" rx="8" ry="6" fill="#fffdf8"/><circle cx="18" cy="26" r="2" fill="#20312b"/><circle cx="30" cy="26" r="2" fill="#20312b"/><path d="m21 31 3-2 3 2-3 3z" fill="#cf6f92"/></svg>'},
+      Carli:{animal:'Otter',color:'#4f919c',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="18" r="6" fill="currentColor"/><circle cx="34" cy="18" r="6" fill="currentColor"/><ellipse cx="24" cy="28" rx="17" ry="15" fill="currentColor"/><ellipse cx="24" cy="32" rx="9" ry="6" fill="#fffdf8"/><circle cx="18" cy="27" r="2" fill="#20312b"/><circle cx="30" cy="27" r="2" fill="#20312b"/><path d="M21 31h6l-3 3z" fill="#20312b"/></svg>'},
+      Meghan:{animal:'Deer',color:'#a86b4c',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 17V7m0 5-4-4m4 0 4-4M32 17V7m0 5-4-4m4 0 4-4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path fill="currentColor" d="m12 16 6-6h12l6 6v17c0 7-5 10-12 10s-12-3-12-10z"/><ellipse cx="24" cy="33" rx="7" ry="5" fill="#fffdf8"/><circle cx="19" cy="25" r="2" fill="#20312b"/><circle cx="29" cy="25" r="2" fill="#20312b"/><path d="M22 31h4l-2 2z" fill="#20312b"/></svg>'}
+    };
+    const fallbackIcon={animal:'Panda',color:'#68736c',svg:'<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="15" r="7" fill="currentColor"/><circle cx="34" cy="15" r="7" fill="currentColor"/><circle cx="24" cy="28" r="17" fill="currentColor"/><ellipse cx="18" cy="26" rx="5" ry="6" fill="#fffdf8"/><ellipse cx="30" cy="26" rx="5" ry="6" fill="#fffdf8"/><circle cx="18" cy="26" r="2" fill="#20312b"/><circle cx="30" cy="26" r="2" fill="#20312b"/><path d="M21 32h6l-3 3z" fill="#20312b"/></svg>'};
     fetch('games.json')
       .then(response=>{if(!response.ok)throw new Error('Could not load the game log.');return response.json()})
       .then(games=>{
         table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td><a class="game-link" href="advanced-stats.html#r=${game.rolls}">View stats →</a></td></tr>`).join('');
         status.hidden=true;
         table.hidden=false;
+        const players=[...new Set(games.flatMap(game=>game.players))];
+        document.getElementById('player-list').innerHTML=players.map(name=>{const icon=playerIcons[name]||fallbackIcon;return `<li class="player"><span class="player-icon" style="color:${icon.color}">${icon.svg}</span><span><span class="player-name">${name}</span><span class="player-animal">${icon.animal}</span></span></li>`}).join('');
+        document.getElementById('players-card').hidden=false;
       })
       .catch(()=>{status.textContent='Unable to load the game log. Try reloading the page.'});
   </script>
