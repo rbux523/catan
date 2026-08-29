@@ -20,7 +20,7 @@
     .card{margin-top:28px;padding:clamp(15px,3vw,28px)}
     .game-link{display:inline;color:var(--sea);background:transparent;width:auto;min-width:0;height:auto;padding:0;border-radius:0;font-size:.78rem;font-weight:800;text-decoration:none}
     .game-link:hover{background:transparent;color:var(--sea);text-decoration:underline;text-underline-offset:3px}
-    @media(max-width:560px){.page{width:min(100% - 26px,1180px);padding-top:24px}.card{margin-top:17px;padding:14px 10px}.game-link{display:inline;font-size:.78rem}.game-link::before{content:none}td:first-child{float:none;margin:0;font-weight:800}td:nth-child(2){margin-bottom:4px;font-size:.78rem;color:var(--muted)}td:nth-child(3){font-size:.76rem;color:var(--muted)}td:nth-child(4){margin-top:5px;font-size:.82rem}td:nth-child(5){margin-top:7px}}
+    @media(max-width:560px){.page{width:min(100% - 26px,1180px);padding-top:24px}.card{margin-top:17px;padding:14px 10px}.game-link{display:inline;font-size:.78rem}.game-link::before{content:none}td:first-child{float:none;margin:0 0 4px;font-size:.78rem;color:var(--muted)}td:nth-child(2){margin:0;font-size:.76rem;color:var(--muted)}td:nth-child(3){margin-top:5px;font-size:.82rem;color:var(--ink)}td:nth-child(4){margin-top:7px}}
   </style>
 </head>
 <body>
@@ -34,7 +34,7 @@
     <section class="card" aria-label="Recorded Catan games">
       <div class="status" id="status" role="status">Loading games…</div>
       <table id="games-table" hidden>
-        <thead><tr><th>Game</th><th>Date</th><th>Players</th><th>Winner</th><th>Dice tracker</th></tr></thead>
+        <thead><tr><th>Date</th><th>Players</th><th>Winner</th><th>Dice tracker</th></tr></thead>
         <tbody></tbody>
       </table>
     </section>
@@ -46,7 +46,7 @@
     fetch('games.json')
       .then(response=>{if(!response.ok)throw new Error('Could not load the game log.');return response.json()})
       .then(games=>{
-        table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>Game ${game.id}</td><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td><a class="game-link" href="index.html#r=${game.rolls}">Open tracker →</a></td></tr>`).join('');
+        table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td><a class="game-link" href="index.html#r=${game.rolls}">Open tracker →</a></td></tr>`).join('');
         status.hidden=true;
         table.hidden=false;
       })
