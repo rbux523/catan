@@ -65,7 +65,7 @@
         document.getElementById('wins').textContent=wins;
         document.getElementById('games-played').textContent=played.length;
         document.getElementById('win-percentage').textContent=`${Math.round(wins/played.length*100)}%`;
-        document.getElementById('games-list').innerHTML=played.map(game=>{const won=game.winner===name;return `<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(escapeHTML).join(', ')}</td><td class="result ${won?'won':''}">${won?'Won':'Played'}</td><td>${game.rolls?`<a class="game-link" href="advanced-stats.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`}).join('');
+        document.getElementById('games-list').innerHTML=played.map(game=>{const won=game.winner===name;return `<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(escapeHTML).join(', ')}</td><td class="result ${won?'won':''}">${won?'Won':'Played'}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`}).join('');
         document.getElementById('profile').hidden=false;
         document.getElementById('summary').hidden=false;
         document.getElementById('games-card').hidden=false;

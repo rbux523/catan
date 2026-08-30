@@ -15,7 +15,7 @@
   <style>@media(max-width:560px){.games-card th:nth-child(1){width:23%}.games-card th:nth-child(2){width:35%}.games-card th:nth-child(3){width:17%}.games-card th:nth-child(4){width:25%}.games-card td:first-child{white-space:nowrap}.games-card .pre-tracker{font-size:0}.games-card .pre-tracker::after{content:"Pre-tracker";font-size:.74rem}}</style>
 </head>
 <body>
-  <main class="page is-loading"><header><a class="back" href="index.html">Start new game →</a><h1>Game history</h1></header>
+  <main class="page is-loading"><header><a class="back" href="index.html" target="_blank" rel="noopener">Start new game →</a><h1>Game history</h1></header>
     <section class="card games-card" aria-label="Recorded Catan games"><div class="status" id="status" role="status">Loading games…</div><table id="games-table" hidden><thead><tr><th>Date</th><th>Players</th><th>Winner</th><th>Dice tracker</th></tr></thead><tbody></tbody></table></section>
     <section class="card players-card" id="players-card" hidden aria-labelledby="players-heading"><h2 id="players-heading">Players</h2><p>Everyone who has joined a recorded game.</p><ul class="player-list" id="player-list"></ul></section>
   </main>
@@ -24,7 +24,7 @@
     const loadJson=path=>fetch(path).then(response=>{if(!response.ok)throw new Error();return response.json()});
     const table=document.getElementById('games-table'),status=document.getElementById('status');
     Promise.all([loadJson('games.json'),loadJson('players.json')]).then(([games,profiles])=>{
-      table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td>${game.rolls?`<a class="game-link" href="advanced-stats.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`).join('');
+      table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`).join('');
       const players=[...new Set(games.flatMap(game=>game.players))];
       document.getElementById('player-list').innerHTML=players.map(name=>{const player=profiles[name]||profiles.fallback;return `<li><a class="player" href="player.html?name=${encodeURIComponent(name)}"><img class="player-icon" src="${player.icon}" alt=""><span><span class="player-name">${name}</span><span class="player-animal">${player.animal}</span></span></a></li>`}).join('');
       status.hidden=true;table.hidden=false;document.getElementById('players-card').hidden=false;document.querySelector('.page').classList.remove('is-loading');
