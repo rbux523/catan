@@ -1351,13 +1351,16 @@
     ]
   },
   {
-    "name": "Robin Hood",
-    "file": "SVG/robin-hood.svg",
-    "description": "Cartoon avatar illustration of Robin Hood.",
+    "name": "Nick Wilde",
+    "file": "SVG/nick-wilde.svg",
+    "description": "Cartoon avatar illustration of Nick Wilde from Disney's Zootopia.",
     "tags": [
+      "Animal",
       "cartoon",
       "character avatar",
-      "Robin Hood"
+      "Disney",
+      "fox",
+      "Zootopia"
     ]
   },
   {
