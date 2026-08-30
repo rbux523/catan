@@ -21,3 +21,4 @@
 | [Game 17](https://rbux523.github.io/catan/index.html#r=48c539b55656b7348b5784893b5377ab4752777848838723625867656859556a5) | Aug 27, 2026 | Ryan, Will, Carli, Andrew, Jacob, Dylan | Jacob |
 | [Game 18](https://rbux523.github.io/catan/index.html#r=c745697757698b457788768792554527b95547597865548626a9) | Aug 28, 2026 | Ryan, Carli, Andrew, Jacob | Ryan |
 | [Game 19](https://rbux523.github.io/catan/index.html#r=b6652965a68795356cb739a9455b3586a4796478565588672774648) | Aug 29, 2026 | Jacob, Renee, Andrew, Carli, Ryan | Ryan |
+| [Game 20](https://rbux523.github.io/catan/index.html#r=879969287ac8987683865547aa77256599667458866a758a9) | Aug 29, 2026 | Ryan, Carli, Jacob, Renee, Andrew | Ryan |
