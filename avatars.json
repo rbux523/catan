@@ -417,12 +417,15 @@
     ]
   },
   {
-    "name": "Draco Malfoy",
-    "file": "SVG/draco-malfoy.svg",
-    "description": "Cartoon avatar illustration of Draco Malfoy.",
+    "name": "Boss Baby",
+    "file": "SVG/boss-baby.svg",
+    "description": "Cartoon avatar illustration of Boss Baby from DreamWorks.",
     "tags": [
+      "baby",
       "cartoon",
-      "character avatar"
+      "character avatar",
+      "DreamWorks",
+      "The Boss Baby"
     ]
   },
   {
@@ -1086,6 +1089,7 @@
       "cartoon",
       "character avatar",
       "Disney",
+      "monkey",
       "The Lion King"
     ]
   },
