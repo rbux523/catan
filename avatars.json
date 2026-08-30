@@ -1,0 +1,792 @@
+[
+  {
+    "name": "Ahsoka Tano",
+    "file": "SVG/ahsoka-tano.svg",
+    "description": "Cartoon avatar illustration of Ahsoka Tano."
+  },
+  {
+    "name": "Aladdin",
+    "file": "SVG/aladdin.svg",
+    "description": "Cartoon avatar illustration of Aladdin."
+  },
+  {
+    "name": "Alice",
+    "file": "SVG/alice.svg",
+    "description": "Cartoon avatar illustration of Alice."
+  },
+  {
+    "name": "Anger",
+    "file": "SVG/anger.svg",
+    "description": "Cartoon avatar illustration of Anger."
+  },
+  {
+    "name": "Anna",
+    "file": "SVG/anna.svg",
+    "description": "Cartoon avatar illustration of Anna."
+  },
+  {
+    "name": "Ariel",
+    "file": "SVG/ariel.svg",
+    "description": "Cartoon avatar illustration of Ariel."
+  },
+  {
+    "name": "Baloo",
+    "file": "SVG/baloo.svg",
+    "description": "Cartoon avatar illustration of Baloo."
+  },
+  {
+    "name": "Bambi",
+    "file": "SVG/bambi.svg",
+    "description": "Cartoon avatar illustration of Bambi."
+  },
+  {
+    "name": "BB-8",
+    "file": "SVG/bb-8.svg",
+    "description": "Cartoon avatar illustration of BB-8."
+  },
+  {
+    "name": "Beast",
+    "file": "SVG/beast.svg",
+    "description": "Cartoon avatar illustration of Beast."
+  },
+  {
+    "name": "Belle",
+    "file": "SVG/belle.svg",
+    "description": "Cartoon avatar illustration of Belle."
+  },
+  {
+    "name": "Black Panther",
+    "file": "SVG/black-panther.svg",
+    "description": "Cartoon avatar illustration of Black Panther."
+  },
+  {
+    "name": "Blue-haired Girl",
+    "file": "SVG/blue-haired-girl.svg",
+    "description": "Cartoon avatar illustration of Blue-haired Girl."
+  },
+  {
+    "name": "Boba Fett",
+    "file": "SVG/boba-fett.svg",
+    "description": "Cartoon avatar illustration of Boba Fett."
+  },
+  {
+    "name": "Boo",
+    "file": "SVG/boo.svg",
+    "description": "Cartoon avatar illustration of Boo."
+  },
+  {
+    "name": "Bugs Bunny",
+    "file": "SVG/bugs-bunny.svg",
+    "description": "Cartoon avatar illustration of Bugs Bunny."
+  },
+  {
+    "name": "Bulldog",
+    "file": "SVG/bulldog.svg",
+    "description": "Cartoon avatar illustration of Bulldog."
+  },
+  {
+    "name": "Buzz Lightyear",
+    "file": "SVG/buzz-lightyear.svg",
+    "description": "Cartoon avatar illustration of Buzz Lightyear."
+  },
+  {
+    "name": "Captain America",
+    "file": "SVG/captain-america.svg",
+    "description": "Cartoon avatar illustration of Captain America."
+  },
+  {
+    "name": "Captain Hook",
+    "file": "SVG/captain-hook.svg",
+    "description": "Cartoon avatar illustration of Captain Hook."
+  },
+  {
+    "name": "Cheshire Cat",
+    "file": "SVG/cheshire-cat.svg",
+    "description": "Cartoon avatar illustration of Cheshire Cat."
+  },
+  {
+    "name": "Chewbacca",
+    "file": "SVG/chewbacca.svg",
+    "description": "Cartoon avatar illustration of Chewbacca."
+  },
+  {
+    "name": "Chip",
+    "file": "SVG/chip.svg",
+    "description": "Cartoon avatar illustration of Chip."
+  },
+  {
+    "name": "Cinderella",
+    "file": "SVG/cinderella.svg",
+    "description": "Cartoon avatar illustration of Cinderella."
+  },
+  {
+    "name": "Cinnamoroll",
+    "file": "SVG/cinnamoroll.svg",
+    "description": "Cartoon avatar illustration of Cinnamoroll."
+  },
+  {
+    "name": "Clarabelle Cow",
+    "file": "SVG/clarabelle-cow.svg",
+    "description": "Cartoon avatar illustration of Clarabelle Cow."
+  },
+  {
+    "name": "Copper",
+    "file": "SVG/copper.svg",
+    "description": "Cartoon avatar illustration of Copper."
+  },
+  {
+    "name": "Cowboy Mouse",
+    "file": "SVG/cowboy-mouse.svg",
+    "description": "Cartoon avatar illustration of Cowboy Mouse."
+  },
+  {
+    "name": "Crash Bandicoot",
+    "file": "SVG/crash-bandicoot.svg",
+    "description": "Cartoon avatar illustration of Crash Bandicoot."
+  },
+  {
+    "name": "Cruella De Vil",
+    "file": "SVG/cruella-de-vil.svg",
+    "description": "Cartoon avatar illustration of Cruella De Vil."
+  },
+  {
+    "name": "Daffy Duck",
+    "file": "SVG/daffy-duck.svg",
+    "description": "Cartoon avatar illustration of Daffy Duck."
+  },
+  {
+    "name": "Daisy Duck",
+    "file": "SVG/daisy-duck.svg",
+    "description": "Cartoon avatar illustration of Daisy Duck."
+  },
+  {
+    "name": "Dale",
+    "file": "SVG/dale.svg",
+    "description": "Cartoon avatar illustration of Dale."
+  },
+  {
+    "name": "Dalmatian Puppy",
+    "file": "SVG/dalmatian-puppy.svg",
+    "description": "Cartoon avatar illustration of Dalmatian Puppy."
+  },
+  {
+    "name": "Darth Maul",
+    "file": "SVG/darth-maul.svg",
+    "description": "Cartoon avatar illustration of Darth Maul."
+  },
+  {
+    "name": "Darth Vader",
+    "file": "SVG/darth-vader.svg",
+    "description": "Cartoon avatar illustration of Darth Vader."
+  },
+  {
+    "name": "Donald Duck",
+    "file": "SVG/donald-duck.svg",
+    "description": "Cartoon avatar illustration of Donald Duck."
+  },
+  {
+    "name": "Dory",
+    "file": "SVG/dory.svg",
+    "description": "Cartoon avatar illustration of Dory."
+  },
+  {
+    "name": "Draco Malfoy",
+    "file": "SVG/draco-malfoy.svg",
+    "description": "Cartoon avatar illustration of Draco Malfoy."
+  },
+  {
+    "name": "Dumbo",
+    "file": "SVG/dumbo.svg",
+    "description": "Cartoon avatar illustration of Dumbo."
+  },
+  {
+    "name": "Eeyore",
+    "file": "SVG/eeyore.svg",
+    "description": "Cartoon avatar illustration of Eeyore."
+  },
+  {
+    "name": "Elsa",
+    "file": "SVG/elsa.svg",
+    "description": "Cartoon avatar illustration of Elsa."
+  },
+  {
+    "name": "Emperor Kuzco",
+    "file": "SVG/emperor-kuzco.svg",
+    "description": "Cartoon avatar illustration of Emperor Kuzco."
+  },
+  {
+    "name": "Emperor Palpatine",
+    "file": "SVG/emperor-palpatine.svg",
+    "description": "Cartoon avatar illustration of Emperor Palpatine."
+  },
+  {
+    "name": "Esmeralda",
+    "file": "SVG/esmeralda.svg",
+    "description": "Cartoon avatar illustration of Esmeralda."
+  },
+  {
+    "name": "EVE",
+    "file": "SVG/eve.svg",
+    "description": "Cartoon avatar illustration of EVE."
+  },
+  {
+    "name": "Figment",
+    "file": "SVG/figment.svg",
+    "description": "Cartoon avatar illustration of Figment."
+  },
+  {
+    "name": "Floppy-eared Puppy",
+    "file": "SVG/floppy-eared-puppy.svg",
+    "description": "Cartoon avatar illustration of Floppy-eared Puppy."
+  },
+  {
+    "name": "Flounder",
+    "file": "SVG/flounder.svg",
+    "description": "Cartoon avatar illustration of Flounder."
+  },
+  {
+    "name": "Genie",
+    "file": "SVG/genie.svg",
+    "description": "Cartoon avatar illustration of Genie."
+  },
+  {
+    "name": "Goofy",
+    "file": "SVG/goofy.svg",
+    "description": "Cartoon avatar illustration of Goofy."
+  },
+  {
+    "name": "Goofy (Classic)",
+    "file": "SVG/goofy-classic.svg",
+    "description": "Cartoon avatar illustration of Goofy (Classic)."
+  },
+  {
+    "name": "Grogu",
+    "file": "SVG/grogu.svg",
+    "description": "Cartoon avatar illustration of Grogu."
+  },
+  {
+    "name": "Groot",
+    "file": "SVG/groot.svg",
+    "description": "Cartoon avatar illustration of Groot."
+  },
+  {
+    "name": "Grumpy",
+    "file": "SVG/grumpy.svg",
+    "description": "Cartoon avatar illustration of Grumpy."
+  },
+  {
+    "name": "Hamm",
+    "file": "SVG/hamm.svg",
+    "description": "Cartoon avatar illustration of Hamm."
+  },
+  {
+    "name": "Han Solo",
+    "file": "SVG/han-solo.svg",
+    "description": "Cartoon avatar illustration of Han Solo."
+  },
+  {
+    "name": "Hawkeye",
+    "file": "SVG/hawkeye.svg",
+    "description": "Cartoon avatar illustration of Hawkeye."
+  },
+  {
+    "name": "Hercules",
+    "file": "SVG/hercules.svg",
+    "description": "Cartoon avatar illustration of Hercules."
+  },
+  {
+    "name": "Hulk",
+    "file": "SVG/hulk.svg",
+    "description": "Cartoon avatar illustration of Hulk."
+  },
+  {
+    "name": "Iron Man",
+    "file": "SVG/iron-man.svg",
+    "description": "Cartoon avatar illustration of Iron Man."
+  },
+  {
+    "name": "Jack Skellington",
+    "file": "SVG/jack-skellington.svg",
+    "description": "Cartoon avatar illustration of Jack Skellington."
+  },
+  {
+    "name": "Jafar",
+    "file": "SVG/jafar.svg",
+    "description": "Cartoon avatar illustration of Jafar."
+  },
+  {
+    "name": "Jasmine",
+    "file": "SVG/jasmine.svg",
+    "description": "Cartoon avatar illustration of Jasmine."
+  },
+  {
+    "name": "Jerry",
+    "file": "SVG/jerry.svg",
+    "description": "Cartoon avatar illustration of Jerry."
+  },
+  {
+    "name": "Jessie",
+    "file": "SVG/jessie.svg",
+    "description": "Cartoon avatar illustration of Jessie."
+  },
+  {
+    "name": "Jesus",
+    "file": "SVG/jesus.svg",
+    "description": "Cartoon avatar illustration of Jesus."
+  },
+  {
+    "name": "Jiminy Cricket",
+    "file": "SVG/jiminy-cricket.svg",
+    "description": "Cartoon avatar illustration of Jiminy Cricket."
+  },
+  {
+    "name": "Kevin (Up)",
+    "file": "SVG/kevin-up.svg",
+    "description": "Cartoon avatar illustration of Kevin (Up)."
+  },
+  {
+    "name": "Khan",
+    "file": "SVG/khan.svg",
+    "description": "Cartoon avatar illustration of Khan."
+  },
+  {
+    "name": "King Triton",
+    "file": "SVG/king-triton.svg",
+    "description": "Cartoon avatar illustration of King Triton."
+  },
+  {
+    "name": "Kuzco",
+    "file": "SVG/kuzco.svg",
+    "description": "Cartoon avatar illustration of Kuzco."
+  },
+  {
+    "name": "Lady",
+    "file": "SVG/lady.svg",
+    "description": "Cartoon avatar illustration of Lady."
+  },
+  {
+    "name": "Lady Tremaine",
+    "file": "SVG/lady-tremaine.svg",
+    "description": "Cartoon avatar illustration of Lady Tremaine."
+  },
+  {
+    "name": "Lilo",
+    "file": "SVG/lilo.svg",
+    "description": "Cartoon avatar illustration of Lilo."
+  },
+  {
+    "name": "Loki",
+    "file": "SVG/loki.svg",
+    "description": "Cartoon avatar illustration of Loki."
+  },
+  {
+    "name": "Lola Bunny",
+    "file": "SVG/lola-bunny.svg",
+    "description": "Cartoon avatar illustration of Lola Bunny."
+  },
+  {
+    "name": "Lotso",
+    "file": "SVG/lotso.svg",
+    "description": "Cartoon avatar illustration of Lotso."
+  },
+  {
+    "name": "Louis Alligator",
+    "file": "SVG/louis-alligator.svg",
+    "description": "Cartoon avatar illustration of Louis Alligator."
+  },
+  {
+    "name": "Luigi",
+    "file": "SVG/luigi.svg",
+    "description": "Cartoon avatar illustration of Luigi."
+  },
+  {
+    "name": "Lumiere",
+    "file": "SVG/lumiere.svg",
+    "description": "Cartoon avatar illustration of Lumiere."
+  },
+  {
+    "name": "Mace Windu",
+    "file": "SVG/mace-windu.svg",
+    "description": "Cartoon avatar illustration of Mace Windu."
+  },
+  {
+    "name": "Maleficent",
+    "file": "SVG/maleficent.svg",
+    "description": "Cartoon avatar illustration of Maleficent."
+  },
+  {
+    "name": "Mandalorian",
+    "file": "SVG/mandalorian.svg",
+    "description": "Cartoon avatar illustration of Mandalorian."
+  },
+  {
+    "name": "Marie",
+    "file": "SVG/marie.svg",
+    "description": "Cartoon avatar illustration of Marie."
+  },
+  {
+    "name": "Mario",
+    "file": "SVG/mario.svg",
+    "description": "Cartoon avatar illustration of Mario."
+  },
+  {
+    "name": "Maui",
+    "file": "SVG/maui.svg",
+    "description": "Cartoon avatar illustration of Maui."
+  },
+  {
+    "name": "Medusa",
+    "file": "SVG/medusa.svg",
+    "description": "Cartoon avatar illustration of Medusa."
+  },
+  {
+    "name": "Merlin",
+    "file": "SVG/merlin.svg",
+    "description": "Cartoon avatar illustration of Merlin."
+  },
+  {
+    "name": "Mickey Mouse",
+    "file": "SVG/mickey-mouse.svg",
+    "description": "Cartoon avatar illustration of Mickey Mouse."
+  },
+  {
+    "name": "Mike Wazowski",
+    "file": "SVG/mike-wazowski.svg",
+    "description": "Cartoon avatar illustration of Mike Wazowski."
+  },
+  {
+    "name": "Minnie Mouse",
+    "file": "SVG/minnie-mouse.svg",
+    "description": "Cartoon avatar illustration of Minnie Mouse."
+  },
+  {
+    "name": "Moana",
+    "file": "SVG/moana.svg",
+    "description": "Cartoon avatar illustration of Moana."
+  },
+  {
+    "name": "Mr Potato Head",
+    "file": "SVG/mr-potato-head.svg",
+    "description": "Cartoon avatar illustration of Mr Potato Head."
+  },
+  {
+    "name": "Mr Toad",
+    "file": "SVG/mr-toad.svg",
+    "description": "Cartoon avatar illustration of Mr Toad."
+  },
+  {
+    "name": "Mrs Potato Head",
+    "file": "SVG/mrs-potato-head.svg",
+    "description": "Cartoon avatar illustration of Mrs Potato Head."
+  },
+  {
+    "name": "Mrs Potts",
+    "file": "SVG/mrs-potts.svg",
+    "description": "Cartoon avatar illustration of Mrs Potts."
+  },
+  {
+    "name": "Mulan (Portrait)",
+    "file": "SVG/mulan-portrait.svg",
+    "description": "Cartoon avatar illustration of Mulan (Portrait)."
+  },
+  {
+    "name": "Mushu",
+    "file": "SVG/mushu.svg",
+    "description": "Cartoon avatar illustration of Mushu."
+  },
+  {
+    "name": "Nala",
+    "file": "SVG/nala.svg",
+    "description": "Cartoon avatar illustration of Nala."
+  },
+  {
+    "name": "Nani",
+    "file": "SVG/nani.svg",
+    "description": "Cartoon avatar illustration of Nani."
+  },
+  {
+    "name": "Obi Wan Kenobi",
+    "file": "SVG/obi-wan-kenobi.svg",
+    "description": "Cartoon avatar illustration of Obi Wan Kenobi."
+  },
+  {
+    "name": "Odin",
+    "file": "SVG/odin.svg",
+    "description": "Cartoon avatar illustration of Odin."
+  },
+  {
+    "name": "Olaf",
+    "file": "SVG/olaf.svg",
+    "description": "Cartoon avatar illustration of Olaf."
+  },
+  {
+    "name": "Oogie Boogie",
+    "file": "SVG/oogie-boogie.svg",
+    "description": "Cartoon avatar illustration of Oogie Boogie."
+  },
+  {
+    "name": "Pascal",
+    "file": "SVG/pascal.svg",
+    "description": "Cartoon avatar illustration of Pascal."
+  },
+  {
+    "name": "Perry The Platypus",
+    "file": "SVG/perry-the-platypus.svg",
+    "description": "Cartoon avatar illustration of Perry The Platypus."
+  },
+  {
+    "name": "Pete",
+    "file": "SVG/pete.svg",
+    "description": "Cartoon avatar illustration of Pete."
+  },
+  {
+    "name": "Peter Pan",
+    "file": "SVG/peter-pan.svg",
+    "description": "Cartoon avatar illustration of Peter Pan."
+  },
+  {
+    "name": "Piglet",
+    "file": "SVG/piglet.svg",
+    "description": "Cartoon avatar illustration of Piglet."
+  },
+  {
+    "name": "Pluto",
+    "file": "SVG/pluto.svg",
+    "description": "Cartoon avatar illustration of Pluto."
+  },
+  {
+    "name": "Pocahontas",
+    "file": "SVG/pocahontas.svg",
+    "description": "Cartoon avatar illustration of Pocahontas."
+  },
+  {
+    "name": "Princess Aurora",
+    "file": "SVG/princess-aurora.svg",
+    "description": "Cartoon avatar illustration of Princess Aurora."
+  },
+  {
+    "name": "Princess Leia",
+    "file": "SVG/princess-leia.svg",
+    "description": "Cartoon avatar illustration of Princess Leia."
+  },
+  {
+    "name": "Pua",
+    "file": "SVG/pua.svg",
+    "description": "Cartoon avatar illustration of Pua."
+  },
+  {
+    "name": "Pumbaa",
+    "file": "SVG/pumbaa.svg",
+    "description": "Cartoon avatar illustration of Pumbaa."
+  },
+  {
+    "name": "Purple Alien",
+    "file": "SVG/purple-alien.svg",
+    "description": "Cartoon avatar illustration of Purple Alien."
+  },
+  {
+    "name": "Purple Monster",
+    "file": "SVG/purple-monster.svg",
+    "description": "Cartoon avatar illustration of Purple Monster."
+  },
+  {
+    "name": "R2-D2",
+    "file": "SVG/r2-d2.svg",
+    "description": "Cartoon avatar illustration of R2-D2."
+  },
+  {
+    "name": "Rafiki",
+    "file": "SVG/rafiki.svg",
+    "description": "Cartoon avatar illustration of Rafiki."
+  },
+  {
+    "name": "Rapunzel",
+    "file": "SVG/rapunzel.svg",
+    "description": "Cartoon avatar illustration of Rapunzel."
+  },
+  {
+    "name": "Remy",
+    "file": "SVG/remy.svg",
+    "description": "Cartoon avatar illustration of Remy."
+  },
+  {
+    "name": "Road Runner",
+    "file": "SVG/road-runner.svg",
+    "description": "Cartoon avatar illustration of Road Runner."
+  },
+  {
+    "name": "Robin Hood",
+    "file": "SVG/robin-hood.svg",
+    "description": "Cartoon avatar illustration of Robin Hood."
+  },
+  {
+    "name": "Rocket Raccoon",
+    "file": "SVG/rocket-raccoon.svg",
+    "description": "Cartoon avatar illustration of Rocket Raccoon."
+  },
+  {
+    "name": "Round Robot",
+    "file": "SVG/round-robot.svg",
+    "description": "Cartoon avatar illustration of Round Robot."
+  },
+  {
+    "name": "Sally",
+    "file": "SVG/sally.svg",
+    "description": "Cartoon avatar illustration of Sally."
+  },
+  {
+    "name": "Scar",
+    "file": "SVG/scar.svg",
+    "description": "Cartoon avatar illustration of Scar."
+  },
+  {
+    "name": "Scooby Doo",
+    "file": "SVG/scooby-doo.svg",
+    "description": "Cartoon avatar illustration of Scooby Doo."
+  },
+  {
+    "name": "Scrooge Mcduck",
+    "file": "SVG/scrooge-mcduck.svg",
+    "description": "Cartoon avatar illustration of Scrooge Mcduck."
+  },
+  {
+    "name": "Shrek",
+    "file": "SVG/shrek.svg",
+    "description": "Cartoon avatar illustration of Shrek."
+  },
+  {
+    "name": "Simba",
+    "file": "SVG/simba.svg",
+    "description": "Cartoon avatar illustration of Simba."
+  },
+  {
+    "name": "Simba Cub",
+    "file": "SVG/simba-cub.svg",
+    "description": "Cartoon avatar illustration of Simba Cub."
+  },
+  {
+    "name": "Snow White",
+    "file": "SVG/snow-white.svg",
+    "description": "Cartoon avatar illustration of Snow White."
+  },
+  {
+    "name": "Sorcerer Mickey",
+    "file": "SVG/sorcerer-mickey.svg",
+    "description": "Cartoon avatar illustration of Sorcerer Mickey."
+  },
+  {
+    "name": "Spider Man",
+    "file": "SVG/spider-man.svg",
+    "description": "Cartoon avatar illustration of Spider Man."
+  },
+  {
+    "name": "Stitch",
+    "file": "SVG/stitch.svg",
+    "description": "Cartoon avatar illustration of Stitch."
+  },
+  {
+    "name": "Stitch (Alien)",
+    "file": "SVG/stitch-alien.svg",
+    "description": "Cartoon avatar illustration of Stitch (Alien)."
+  },
+  {
+    "name": "Stormtrooper",
+    "file": "SVG/stormtrooper.svg",
+    "description": "Cartoon avatar illustration of Stormtrooper."
+  },
+  {
+    "name": "Sulley",
+    "file": "SVG/sulley.svg",
+    "description": "Cartoon avatar illustration of Sulley."
+  },
+  {
+    "name": "Sylvester",
+    "file": "SVG/sylvester.svg",
+    "description": "Cartoon avatar illustration of Sylvester."
+  },
+  {
+    "name": "Tasmanian Devil",
+    "file": "SVG/taz.svg",
+    "description": "Cartoon avatar illustration of Tasmanian Devil."
+  },
+  {
+    "name": "Thanos",
+    "file": "SVG/thanos.svg",
+    "description": "Cartoon avatar illustration of Thanos."
+  },
+  {
+    "name": "Thor",
+    "file": "SVG/thor.svg",
+    "description": "Cartoon avatar illustration of Thor."
+  },
+  {
+    "name": "Three-eyed Alien",
+    "file": "SVG/three-eyed-alien.svg",
+    "description": "Cartoon avatar illustration of Three-eyed Alien."
+  },
+  {
+    "name": "Thumper",
+    "file": "SVG/thumper.svg",
+    "description": "Cartoon avatar illustration of Thumper."
+  },
+  {
+    "name": "Tigger",
+    "file": "SVG/tigger.svg",
+    "description": "Cartoon avatar illustration of Tigger."
+  },
+  {
+    "name": "Tinker Bell",
+    "file": "SVG/tinker-bell.svg",
+    "description": "Cartoon avatar illustration of Tinker Bell."
+  },
+  {
+    "name": "Tom",
+    "file": "SVG/tom.svg",
+    "description": "Cartoon avatar illustration of Tom."
+  },
+  {
+    "name": "Tweety",
+    "file": "SVG/tweety.svg",
+    "description": "Cartoon avatar illustration of Tweety."
+  },
+  {
+    "name": "Ursula",
+    "file": "SVG/ursula.svg",
+    "description": "Cartoon avatar illustration of Ursula."
+  },
+  {
+    "name": "Vanellope",
+    "file": "SVG/vanellope.svg",
+    "description": "Cartoon avatar illustration of Vanellope."
+  },
+  {
+    "name": "Viking Warrior",
+    "file": "SVG/viking-warrior.svg",
+    "description": "Cartoon avatar illustration of Viking Warrior."
+  },
+  {
+    "name": "WALL-E",
+    "file": "SVG/wall-e.svg",
+    "description": "Cartoon avatar illustration of WALL-E."
+  },
+  {
+    "name": "Wile E Coyote",
+    "file": "SVG/wile-e-coyote.svg",
+    "description": "Cartoon avatar illustration of Wile E Coyote."
+  },
+  {
+    "name": "Winnie The Pooh",
+    "file": "SVG/winnie-the-pooh.svg",
+    "description": "Cartoon avatar illustration of Winnie The Pooh."
+  },
+  {
+    "name": "Woody",
+    "file": "SVG/woody.svg",
+    "description": "Cartoon avatar illustration of Woody."
+  },
+  {
+    "name": "Yoda",
+    "file": "SVG/yoda.svg",
+    "description": "Cartoon avatar illustration of Yoda."
+  }
+]
