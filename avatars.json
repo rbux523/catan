@@ -1537,12 +1537,13 @@
     ]
   },
   {
-    "name": "Tasmanian Devil",
-    "file": "SVG/taz.svg",
-    "description": "Cartoon avatar illustration of Tasmanian Devil.",
+    "name": "Yosemite Sam",
+    "file": "SVG/yosemite-sam.svg",
+    "description": "Cartoon avatar illustration of Yosemite Sam from Looney Tunes.",
     "tags": [
       "cartoon",
       "character avatar",
+      "cowboy",
       "Looney Tunes",
       "Warner Bros."
     ]
