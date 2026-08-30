@@ -59,9 +59,9 @@
         const wins=played.filter(game=>game.winner===name).length;
         document.title=`${name} — Catan Dice Tracker`;
         document.getElementById('profile-icon').src=icon.icon;
-        document.getElementById('profile-icon').alt=`${icon.animal} icon`;
+        document.getElementById('profile-icon').alt=`${icon.avatar} avatar`;
         document.getElementById('player-name').textContent=name;
-        document.getElementById('player-animal').textContent=icon.animal;
+        document.getElementById('player-animal').textContent=icon.avatar;
         document.getElementById('wins').textContent=wins;
         document.getElementById('games-played').textContent=played.length;
         document.getElementById('win-percentage').textContent=`${Math.round(wins/played.length*100)}%`;

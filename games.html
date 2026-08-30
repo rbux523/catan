@@ -26,7 +26,7 @@
     Promise.all([loadJson('games.json'),loadJson('players.json')]).then(([games,profiles])=>{
       table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`).join('');
       const players=[...new Set(games.flatMap(game=>game.players))];
-      document.getElementById('player-list').innerHTML=players.map(name=>{const player=profiles[name]||profiles.fallback;return `<li><a class="player" href="player.html?name=${encodeURIComponent(name)}"><img class="player-icon" src="${player.icon}" alt=""><span><span class="player-name">${name}</span><span class="player-animal">${player.animal}</span></span></a></li>`}).join('');
+      document.getElementById('player-list').innerHTML=players.map(name=>{const player=profiles[name]||profiles.fallback;return `<li><a class="player" href="player.html?name=${encodeURIComponent(name)}"><img class="player-icon" src="${player.icon}" alt=""><span><span class="player-name">${name}</span><span class="player-animal">${player.avatar}</span></span></a></li>`}).join('');
       status.hidden=true;table.hidden=false;document.getElementById('players-card').hidden=false;document.querySelector('.page').classList.remove('is-loading');
     }).catch(()=>{status.textContent='Unable to load the game log. Try reloading the page.';document.querySelector('.page').classList.remove('is-loading')});
   </script>
