@@ -1502,12 +1502,14 @@
     ]
   },
   {
-    "name": "Stitch (Alien)",
-    "file": "SVG/stitch-alien.svg",
-    "description": "Cartoon avatar illustration of Stitch (Alien).",
+    "name": "Angel",
+    "file": "SVG/angel.svg",
+    "description": "Cartoon avatar illustration of Angel, Experiment 624 from Lilo & Stitch.",
     "tags": [
       "cartoon",
       "character avatar",
+      "Disney",
+      "Experiment 624",
       "Lilo & Stitch"
     ]
   },
