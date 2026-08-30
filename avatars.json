@@ -138,12 +138,15 @@
     ]
   },
   {
-    "name": "Blue-haired Girl",
-    "file": "SVG/blue-haired-girl.svg",
-    "description": "Cartoon avatar illustration of Blue-haired Girl.",
+    "name": "Sadness",
+    "file": "SVG/sadness.svg",
+    "description": "Cartoon avatar illustration of Sadness from Pixar's Inside Out.",
     "tags": [
       "cartoon",
-      "character avatar"
+      "character avatar",
+      "emotion",
+      "Inside Out",
+      "Pixar"
     ]
   },
   {
@@ -519,12 +522,17 @@
     ]
   },
   {
-    "name": "Floppy-eared Puppy",
-    "file": "SVG/floppy-eared-puppy.svg",
-    "description": "Cartoon avatar illustration of Floppy-eared Puppy.",
+    "name": "Kion",
+    "file": "SVG/kion.svg",
+    "description": "Cartoon avatar illustration of Kion from Disney's The Lion Guard.",
     "tags": [
+      "Animal",
       "cartoon",
-      "character avatar"
+      "character avatar",
+      "Disney",
+      "lion",
+      "The Lion Guard",
+      "The Lion King"
     ]
   },
   {
