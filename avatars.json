@@ -312,13 +312,17 @@
     ]
   },
   {
-    "name": "Crash Bandicoot",
-    "file": "SVG/crash-bandicoot.svg",
-    "description": "Cartoon avatar illustration of Crash Bandicoot.",
+    "name": "Anxiety",
+    "file": "SVG/anxiety.svg",
+    "description": "Cartoon avatar illustration of Anxiety from Pixar's Inside Out 2.",
     "tags": [
       "cartoon",
       "character avatar",
-      "Video game"
+      "Disney",
+      "emotion",
+      "Inside Out",
+      "Inside Out 2",
+      "Pixar"
     ]
   },
   {
@@ -737,12 +741,14 @@
     ]
   },
   {
-    "name": "Jesus",
-    "file": "SVG/jesus.svg",
-    "description": "Cartoon avatar illustration of Jesus.",
+    "name": "Obi-Wan Kenobi",
+    "file": "SVG/obi-wan-kenobi.svg",
+    "description": "Cartoon avatar illustration of Obi-Wan Kenobi from Star Wars.",
     "tags": [
       "cartoon",
-      "character avatar"
+      "character avatar",
+      "Jedi",
+      "Star Wars"
     ]
   },
   {
@@ -1116,13 +1122,15 @@
     ]
   },
   {
-    "name": "Obi Wan Kenobi",
-    "file": "SVG/obi-wan-kenobi.svg",
-    "description": "Cartoon avatar illustration of Obi Wan Kenobi.",
+    "name": "Star-Lord",
+    "file": "SVG/star-lord.svg",
+    "description": "Cartoon avatar illustration of Star-Lord from Marvel's Guardians of the Galaxy.",
     "tags": [
       "cartoon",
       "character avatar",
-      "Star Wars"
+      "Guardians of the Galaxy",
+      "Marvel",
+      "Superhero"
     ]
   },
   {
@@ -1578,7 +1586,7 @@
   {
     "name": "Thor",
     "file": "SVG/thor.svg",
-    "description": "Cartoon avatar illustration of Thor.",
+    "description": "Cartoon avatar illustration of Thor from Marvel.",
     "tags": [
       "cartoon",
       "character avatar",
@@ -1588,12 +1596,14 @@
     ]
   },
   {
-    "name": "Three-eyed Alien",
-    "file": "SVG/three-eyed-alien.svg",
-    "description": "Cartoon avatar illustration of Three-eyed Alien.",
+    "name": "Little Green Man",
+    "file": "SVG/little-green-man.svg",
+    "description": "Cartoon avatar illustration of a Little Green Man from Pixar's Toy Story.",
     "tags": [
       "cartoon",
       "character avatar",
+      "Disney",
+      "Little Green Men",
       "Pixar",
       "Toy Story"
     ]
@@ -1677,7 +1687,7 @@
   {
     "name": "Viking Warrior",
     "file": "SVG/viking-warrior.svg",
-    "description": "Cartoon avatar illustration of Viking Warrior.",
+    "description": "Cartoon avatar illustration of a Viking warrior.",
     "tags": [
       "cartoon",
       "character avatar"
