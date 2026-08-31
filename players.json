@@ -1,5 +1,5 @@
 {
-  "Ryan": {"avatar":"Tom","icon":"SVG/tom.svg"},
+  "Ryan": {"avatar":"Simba","icon":"SVG/simba.svg"},
   "Andrew": {"avatar":"Hercules","icon":"SVG/hercules.svg"},
   "Dylan": {"avatar":"Eeyore","icon":"SVG/eeyore.svg"},
   "Jacob": {"avatar":"The Mandalorian","icon":"SVG/mandalorian.svg"},
@@ -11,6 +11,6 @@
   "Meghan": {"avatar":"Belle","icon":"SVG/belle.svg"},
   "Chris": {"avatar":"Pluto","icon":"SVG/pluto.svg"},
   "Ben": {"avatar":"Tigger","icon":"SVG/tigger.svg"},
-  "Justin": {"avatar":"Simba","icon":"SVG/simba.svg"},
+  "Justin": {"avatar":"Yoda","icon":"SVG/yoda.svg"},
   "fallback": {"avatar":"Mickey Mouse","icon":"SVG/mickey-mouse.svg"}
 }
