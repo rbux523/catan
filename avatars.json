@@ -963,12 +963,15 @@
     ]
   },
   {
-    "name": "Medusa",
-    "file": "SVG/medusa.svg",
-    "description": "Cartoon avatar illustration of Medusa.",
+    "name": "Celia Mae",
+    "file": "SVG/celia-mae.svg",
+    "description": "Cartoon avatar illustration of Celia Mae from Pixar's Monsters, Inc.",
     "tags": [
       "cartoon",
-      "character avatar"
+      "character avatar",
+      "Disney",
+      "Monsters, Inc.",
+      "Pixar"
     ]
   },
   {
