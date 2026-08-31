@@ -741,9 +741,9 @@
     ]
   },
   {
-    "name": "Obi-Wan Kenobi",
-    "file": "SVG/obi-wan-kenobi.svg",
-    "description": "Cartoon avatar illustration of Obi-Wan Kenobi from Star Wars.",
+    "name": "Qui-Gon Jinn",
+    "file": "SVG/qui-gon-jinn.svg",
+    "description": "Cartoon avatar illustration of Qui-Gon Jinn from Star Wars.",
     "tags": [
       "cartoon",
       "character avatar",
@@ -1122,15 +1122,14 @@
     ]
   },
   {
-    "name": "Star-Lord",
-    "file": "SVG/star-lord.svg",
-    "description": "Cartoon avatar illustration of Star-Lord from Marvel's Guardians of the Galaxy.",
+    "name": "Obi-Wan Kenobi",
+    "file": "SVG/obi-wan-kenobi.svg",
+    "description": "Cartoon avatar illustration of Obi-Wan Kenobi from Star Wars.",
     "tags": [
       "cartoon",
       "character avatar",
-      "Guardians of the Galaxy",
-      "Marvel",
-      "Superhero"
+      "Jedi",
+      "Star Wars"
     ]
   },
   {
