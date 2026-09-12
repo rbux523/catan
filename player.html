@@ -22,6 +22,9 @@
   <style>@media(max-width:560px){tr:first-child{padding-top:0}}</style>
   <style>@media(max-width:560px){#games-card th:nth-child(2){width:35%}}</style>
   <style>@media(max-width:560px){#games-card th:nth-child(1){width:23%}#games-card th:nth-child(2){width:35%}#games-card th:nth-child(3){width:17%}#games-card th:nth-child(4){width:25%}#games-card td:first-child{white-space:nowrap}#games-card .pre-tracker{font-size:0}#games-card .pre-tracker::after{content:"Pre-tracker";font-size:.74rem}}</style>
+  <style>
+    .format-summary-card{grid-template-rows:auto 1fr auto}.game-format-breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-top:13px;border-top:1px solid #e7dfcf}.game-format{display:grid;gap:1px;text-align:center}.game-format b{font-size:1.12rem;line-height:1}.game-format span{color:var(--muted);font-size:.62rem;font-weight:800;line-height:1.15}@media(max-width:560px){.format-summary-card{grid-column:1/-1;min-height:166px!important}.game-format-breakdown{gap:4px}.game-format b{font-size:1.1rem}.game-format span{font-size:.59rem}}
+  </style>
 </head>
 <body>
   <main class="page is-loading">
@@ -34,9 +37,9 @@
       <h1 id="missing-player" hidden>Player not found</h1>
     </header>
     <section class="summary-grid" id="summary" hidden>
-      <article class="card stat-card"><p class="stat-label">Wins</p><p class="stat-value" id="wins">0</p></article>
-      <article class="card stat-card"><p class="stat-label">Games played</p><p class="stat-value games-value" id="games-played">0</p></article>
-      <article class="card stat-card"><p class="stat-label">Win percentage</p><p class="stat-value percent-value" id="win-percentage">0%</p></article>
+      <article class="card stat-card format-summary-card"><p class="stat-label">Wins</p><p class="stat-value" id="wins">0</p><div class="game-format-breakdown"><span class="game-format"><b id="three-player-wins">0</b><span>3 players</span></span><span class="game-format"><b id="four-player-wins">0</b><span>4 players</span></span><span class="game-format"><b id="five-player-wins">0</b><span>5 players</span></span><span class="game-format"><b id="six-player-wins">0</b><span>6 players</span></span></div></article>
+      <article class="card stat-card format-summary-card"><p class="stat-label">Games played</p><p class="stat-value games-value" id="games-played">0</p><div class="game-format-breakdown"><span class="game-format"><b id="three-player-games">0</b><span>3 players</span></span><span class="game-format"><b id="four-player-games">0</b><span>4 players</span></span><span class="game-format"><b id="five-player-games">0</b><span>5 players</span></span><span class="game-format"><b id="six-player-games">0</b><span>6 players</span></span></div></article>
+      <article class="card stat-card format-summary-card"><p class="stat-label">Win percentage</p><p class="stat-value percent-value" id="win-percentage">0%</p><div class="game-format-breakdown"><span class="game-format"><b id="three-player-percentage">—</b><span>3 players</span></span><span class="game-format"><b id="four-player-percentage">—</b><span>4 players</span></span><span class="game-format"><b id="five-player-percentage">—</b><span>5 players</span></span><span class="game-format"><b id="six-player-percentage">—</b><span>6 players</span></span></div></article>
     </section>
     <section class="card" id="games-card" hidden aria-labelledby="games-heading">
       <h2 id="games-heading">Games played</h2>
@@ -65,6 +68,7 @@
         document.getElementById('wins').textContent=wins;
         document.getElementById('games-played').textContent=played.length;
         document.getElementById('win-percentage').textContent=`${Math.round(wins/played.length*100)}%`;
+        [[3,'three'],[4,'four'],[5,'five'],[6,'six']].forEach(([size,label])=>{const group=played.filter(game=>game.players.length===size),groupWins=group.filter(game=>game.winner===name).length;document.getElementById(`${label}-player-games`).textContent=group.length;document.getElementById(`${label}-player-wins`).textContent=groupWins;document.getElementById(`${label}-player-percentage`).textContent=group.length?`${Math.round(groupWins/group.length*100)}%`:'—'});
         document.getElementById('games-list').innerHTML=played.map(game=>{const won=game.winner===name;return `<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(escapeHTML).join(', ')}</td><td class="result ${won?'won':''}">${won?'Won':'Played'}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`}).join('');
         document.getElementById('profile').hidden=false;
         document.getElementById('summary').hidden=false;
