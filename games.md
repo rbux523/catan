@@ -28,3 +28,4 @@
 | [Game 24](https://rbux523.github.io/catan/index.html#r=57472473689957583766b76944766584364768b75973967495659aa5957) | Sep 10, 2026 | Ryan, Andrew, Mike, Jacob | Andrew |
 | [Game 25](https://rbux523.github.io/catan/index.html#r=c7a87877988b38b4886599a4836746b85564877834) | Sep 11, 2026 | Ryan, Carli, Andrew | Andrew |
 | [Game 26](https://rbux523.github.io/catan/index.html#r=55bc433975936256b9796856387b48866999852a76948857255595a6a5ca987636c55b56889) | Sep 11, 2026 | Ryan, Carli, Andrew | Ryan |
+| [Game 27](https://rbux523.github.io/catan/index.html#r=2b58686c7968397a68997a365a8869336582568c5b87a5975c66889348973) | Sep 17, 2026 | Carli, Ryan, Andrew, Dylan | Andrew |
