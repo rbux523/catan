@@ -25,6 +25,9 @@
   <style>
     .format-summary-card{grid-template-rows:auto 1fr auto}.game-format-breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-top:13px;border-top:1px solid #e7dfcf}.game-format{display:grid;gap:1px;text-align:center}.game-format b{font-size:1.12rem;line-height:1}.game-format span{color:var(--muted);font-size:.62rem;font-weight:800;line-height:1.15}@media(max-width:560px){.format-summary-card{grid-column:1/-1;min-height:166px!important}.game-format-breakdown{gap:4px}.game-format b{font-size:1.1rem}.game-format span{font-size:.59rem}}
   </style>
+  <style>
+    .opponent-leaderboards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}.opponent-leaderboards .card{margin:0}.opponent-card h2{margin:0 0 15px;font-size:1.05rem;letter-spacing:-.03em}.place-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}.place{display:grid;grid-template-columns:29px 38px minmax(0,1fr);gap:8px;align-items:center}.trophy-svg{width:29px;height:34px;color:#c99119;overflow:visible}.trophy-svg.silver{color:#909b9e}.trophy-svg.bronze{color:#aa623b}.opponent-avatar{width:38px;height:38px}.opponent-detail{min-width:0}.opponent-name,.opponent-name:visited{display:block;overflow:hidden;color:var(--sea);font-size:.87rem;font-weight:800;line-height:1.08;text-decoration:none;text-overflow:ellipsis;white-space:nowrap}.opponent-name:hover{color:var(--sea);text-decoration:underline;text-underline-offset:3px}.opponent-value{display:block;margin-top:3px;color:var(--muted);font-size:.72rem;line-height:1.15}@media(max-width:760px){.opponent-leaderboards{grid-template-columns:1fr;gap:9px;margin-top:17px}.opponent-card{padding:14px!important}.place{grid-template-columns:32px 42px minmax(0,1fr);gap:10px}.trophy-svg{width:32px;height:37px}.opponent-avatar{width:42px;height:42px}.opponent-name,.opponent-name:visited{font-size:.98rem}.opponent-value{font-size:.78rem}}
+  </style>
 </head>
 <body>
   <main class="page is-loading">
@@ -41,6 +44,7 @@
       <article class="card stat-card format-summary-card"><p class="stat-label">Games played</p><p class="stat-value games-value" id="games-played">0</p><div class="game-format-breakdown"><span class="game-format"><b id="three-player-games">0</b><span>3 players</span></span><span class="game-format"><b id="four-player-games">0</b><span>4 players</span></span><span class="game-format"><b id="five-player-games">0</b><span>5 players</span></span><span class="game-format"><b id="six-player-games">0</b><span>6 players</span></span></div></article>
       <article class="card stat-card format-summary-card"><p class="stat-label">Win percentage</p><p class="stat-value percent-value" id="win-percentage">0%</p><div class="game-format-breakdown"><span class="game-format"><b id="three-player-percentage">—</b><span>3 players</span></span><span class="game-format"><b id="four-player-percentage">—</b><span>4 players</span></span><span class="game-format"><b id="five-player-percentage">—</b><span>5 players</span></span><span class="game-format"><b id="six-player-percentage">—</b><span>6 players</span></span></div></article>
     </section>
+    <section class="opponent-leaderboards" id="opponent-leaderboards" hidden aria-label="Opponent leaderboards"><article class="card opponent-card"><h2>Played with most</h2><ol class="place-list" id="played-with-leaderboard"></ol></article><article class="card opponent-card"><h2>Beaten most</h2><ol class="place-list" id="beaten-leaderboard"></ol></article><article class="card opponent-card"><h2>Beaten you most</h2><ol class="place-list" id="beaten-by-leaderboard"></ol></article></section>
     <section class="card" id="games-card" hidden aria-labelledby="games-heading">
       <h2 id="games-heading">Games played</h2>
       <p>Every recorded game featuring this player.</p>
@@ -54,6 +58,8 @@
     const name=new URLSearchParams(location.search).get('name');
     const status=document.getElementById('status');
     const loadJson=path=>fetch(path).then(response=>{if(!response.ok)throw new Error();return response.json()});
+    const medals=['gold','silver','bronze'];
+    const trophyIcon=rank=>`<svg class="trophy-svg ${medals[rank-1]}" viewBox="0 0 32 38" role="img" aria-label="${rank}${rank===1?'st':rank===2?'nd':'rd'} place"><path d="M8 4h16v10c0 5-3.6 8.5-8 8.5S8 19 8 14z" fill="currentColor"/><path d="M8 7H3v4c0 3.8 2.8 6.5 6.4 6.5M24 7h5v4c0 3.8-2.8 6.5-6.4 6.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M13 23h6v6h4v4H9v-4h4z" fill="currentColor"/><text x="16" y="17" fill="#fffdf8" font-size="10" font-weight="800" text-anchor="middle">${rank}</text></svg>`;
     Promise.all([loadJson('games.json'),loadJson('players.json')])
       .then(([games,profiles])=>{
         const played=games.filter(game=>game.players.includes(name));
@@ -69,9 +75,15 @@
         document.getElementById('games-played').textContent=played.length;
         document.getElementById('win-percentage').textContent=`${Math.round(wins/played.length*100)}%`;
         [[3,'three'],[4,'four'],[5,'five'],[6,'six']].forEach(([size,label])=>{const group=played.filter(game=>game.players.length===size),groupWins=group.filter(game=>game.winner===name).length;document.getElementById(`${label}-player-games`).textContent=group.length;document.getElementById(`${label}-player-wins`).textContent=groupWins;document.getElementById(`${label}-player-percentage`).textContent=group.length?`${Math.round(groupWins/group.length*100)}%`:'—'});
+        const opponents=[...new Set(played.flatMap(game=>game.players.filter(player=>player!==name)))].map(opponent=>({name:opponent,played:played.filter(game=>game.players.includes(opponent)).length,beaten:played.filter(game=>game.players.includes(opponent)&&game.winner===name).length,beatenBy:played.filter(game=>game.winner===opponent).length,profile:profiles[opponent]||profiles.fallback}));
+        const renderLeaderboard=(id,ranked,detail)=>{document.getElementById(id).innerHTML=ranked.slice(0,3).map((opponent,index)=>`<li class="place">${trophyIcon(index+1)}<img class="opponent-avatar" src="${opponent.profile.icon}" alt=""><span class="opponent-detail"><a class="opponent-name" href="player.html?name=${encodeURIComponent(opponent.name)}">${escapeHTML(opponent.name)}</a><span class="opponent-value">${detail(opponent)}</span></span></li>`).join('')};
+        renderLeaderboard('played-with-leaderboard',[...opponents].sort((a,b)=>b.played-a.played||a.name.localeCompare(b.name)),opponent=>`${opponent.played} game${opponent.played===1?'':'s'} together`);
+        renderLeaderboard('beaten-leaderboard',[...opponents].sort((a,b)=>b.beaten-a.beaten||b.played-a.played||a.name.localeCompare(b.name)),opponent=>`${opponent.beaten} win${opponent.beaten===1?'':'s'} against`);
+        renderLeaderboard('beaten-by-leaderboard',[...opponents].sort((a,b)=>b.beatenBy-a.beatenBy||b.played-a.played||a.name.localeCompare(b.name)),opponent=>`${opponent.beatenBy} win${opponent.beatenBy===1?'':'s'} against you`);
         document.getElementById('games-list').innerHTML=played.map(game=>{const won=game.winner===name;return `<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(escapeHTML).join(', ')}</td><td class="result ${won?'won':''}">${won?'Won':'Played'}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`}).join('');
         document.getElementById('profile').hidden=false;
         document.getElementById('summary').hidden=false;
+        document.getElementById('opponent-leaderboards').hidden=false;
         document.getElementById('games-card').hidden=false;
         status.hidden=true;document.querySelector('.page').classList.remove('is-loading');
       })
