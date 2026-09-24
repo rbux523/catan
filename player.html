@@ -28,6 +28,19 @@
   <style>
     .opponent-leaderboards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}.opponent-leaderboards .card{margin:0}.opponent-card h2{margin:0 0 15px;font-size:1.05rem;letter-spacing:-.03em}.place-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}.place{display:grid;grid-template-columns:29px 38px minmax(0,1fr);gap:8px;align-items:center}.trophy-svg{width:29px;height:34px;color:#c99119;overflow:visible}.trophy-svg.silver{color:#909b9e}.trophy-svg.bronze{color:#aa623b}.opponent-avatar{width:38px;height:38px}.opponent-detail{min-width:0}.opponent-name,.opponent-name:visited{display:block;overflow:hidden;color:var(--sea);font-size:.87rem;font-weight:800;line-height:1.08;text-decoration:none;text-overflow:ellipsis;white-space:nowrap}.opponent-name:hover{color:var(--sea);text-decoration:underline;text-underline-offset:3px}.opponent-value{display:block;margin-top:3px;color:var(--muted);font-size:.72rem;line-height:1.15}@media(max-width:760px){.opponent-leaderboards{grid-template-columns:1fr;gap:9px;margin-top:17px}.opponent-card{padding:14px!important}.place{grid-template-columns:32px 42px minmax(0,1fr);gap:10px}.trophy-svg{width:32px;height:37px}.opponent-avatar{width:42px;height:42px}.opponent-name,.opponent-name:visited{font-size:.98rem}.opponent-value{font-size:.78rem}}
   </style>
+  <style>
+    .opponent-card h2 small{color:var(--muted);font-size:.68em;font-weight:700;white-space:nowrap}
+    .opponent-empty{color:var(--muted);font-size:.78rem;font-weight:700}
+    .trophy-svg.pewter{color:#467b9d}
+    .trophy-svg.copper{color:#4d8a69}
+    .streak-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}.streak-grid .card{margin:0}.streak-card{display:grid;grid-template-rows:auto 1fr auto;min-height:175px}.streak-value{align-self:center;justify-self:center;margin:8px 0;color:var(--sea);font-size:clamp(3rem,7vw,5.2rem);font-weight:800;letter-spacing:-.08em;line-height:1}.streak-copy{margin:0!important;color:var(--muted);font-size:.76rem!important;font-weight:700;text-align:center}@media(max-width:560px){.streak-grid{gap:9px;margin-top:9px}.streak-card{min-height:128px;padding:12px!important}.streak-value{font-size:3rem}.streak-copy{font-size:.66rem!important}}
+  </style>
+  <style>
+    .streak-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .streak-card .streak-value{align-self:center;justify-self:center;margin:12px 0 0;padding:0;background:transparent;color:var(--sea);font-size:clamp(2.5rem,7vw,5.2rem);font-weight:800;letter-spacing:-.08em;line-height:1}
+    .streak-card .streak-copy{margin:0!important;color:var(--muted);font-size:.76rem!important;font-weight:700;text-align:center}
+    @media(max-width:560px){.streak-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.streak-card .streak-value{font-size:2.75rem}}
+  </style>
 </head>
 <body>
   <main class="page is-loading">
@@ -44,7 +57,8 @@
       <article class="card stat-card format-summary-card"><p class="stat-label">Games played</p><p class="stat-value games-value" id="games-played">0</p><div class="game-format-breakdown"><span class="game-format"><b id="three-player-games">0</b><span>3 players</span></span><span class="game-format"><b id="four-player-games">0</b><span>4 players</span></span><span class="game-format"><b id="five-player-games">0</b><span>5 players</span></span><span class="game-format"><b id="six-player-games">0</b><span>6 players</span></span></div></article>
       <article class="card stat-card format-summary-card"><p class="stat-label">Win percentage</p><p class="stat-value percent-value" id="win-percentage">0%</p><div class="game-format-breakdown"><span class="game-format"><b id="three-player-percentage">—</b><span>3 players</span></span><span class="game-format"><b id="four-player-percentage">—</b><span>4 players</span></span><span class="game-format"><b id="five-player-percentage">—</b><span>5 players</span></span><span class="game-format"><b id="six-player-percentage">—</b><span>6 players</span></span></div></article>
     </section>
-    <section class="opponent-leaderboards" id="opponent-leaderboards" hidden aria-label="Opponent leaderboards"><article class="card opponent-card"><h2>Played with most</h2><ol class="place-list" id="played-with-leaderboard"></ol></article><article class="card opponent-card"><h2>Beaten most</h2><ol class="place-list" id="beaten-leaderboard"></ol></article><article class="card opponent-card"><h2>Beaten you most</h2><ol class="place-list" id="beaten-by-leaderboard"></ol></article></section>
+    <section class="streak-grid" id="streak-summary" hidden aria-label="Streak statistics"><article class="card streak-card"><p class="stat-label">Longest win streak</p><p class="streak-value" id="longest-win-streak">0</p><p class="streak-copy">wins in a row</p></article><article class="card streak-card"><p class="stat-label">Longest losing streak</p><p class="streak-value" id="longest-loss-streak">0</p><p class="streak-copy">games without a win</p></article><article class="card streak-card"><p class="stat-label">Active losing streak</p><p class="streak-value" id="active-loss-streak">0</p><p class="streak-copy">games without a win</p></article></section>
+    <section class="opponent-leaderboards" id="opponent-leaderboards" hidden aria-label="Opponent leaderboards"><article class="card opponent-card"><h2>Played with most</h2><ol class="place-list" id="played-with-leaderboard"></ol></article><article class="card opponent-card"><h2>Beaten most</h2><ol class="place-list" id="beaten-leaderboard"></ol></article><article class="card opponent-card"><h2>Lost to most</h2><ol class="place-list" id="beaten-by-leaderboard"></ol></article><article class="card opponent-card"><h2>Highest win % over <small>(3 game min.)</small></h2><ol class="place-list" id="highest-win-rate-leaderboard"></ol></article><article class="card opponent-card"><h2>Lowest win % against <small>(3 game min.)</small></h2><ol class="place-list" id="lowest-win-rate-leaderboard"></ol></article><article class="card opponent-card"><h2>Power duo <small>(3 game min.)</small></h2><ol class="place-list" id="power-duo-leaderboard"></ol></article></section>
     <section class="card" id="games-card" hidden aria-labelledby="games-heading">
       <h2 id="games-heading">Games played</h2>
       <p>Every recorded game featuring this player.</p>
@@ -58,14 +72,15 @@
     const name=new URLSearchParams(location.search).get('name');
     const status=document.getElementById('status');
     const loadJson=path=>fetch(path).then(response=>{if(!response.ok)throw new Error();return response.json()});
-    const medals=['gold','silver','bronze'];
-    const trophyIcon=rank=>`<svg class="trophy-svg ${medals[rank-1]}" viewBox="0 0 32 38" role="img" aria-label="${rank}${rank===1?'st':rank===2?'nd':'rd'} place"><path d="M8 4h16v10c0 5-3.6 8.5-8 8.5S8 19 8 14z" fill="currentColor"/><path d="M8 7H3v4c0 3.8 2.8 6.5 6.4 6.5M24 7h5v4c0 3.8-2.8 6.5-6.4 6.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M13 23h6v6h4v4H9v-4h4z" fill="currentColor"/><text x="16" y="17" fill="#fffdf8" font-size="10" font-weight="800" text-anchor="middle">${rank}</text></svg>`;
+    const medals=['gold','silver','bronze','pewter','copper'],ordinal=rank=>rank===1?'st':rank===2?'nd':rank===3?'rd':'th';
+    const trophyIcon=rank=>`<svg class="trophy-svg ${medals[rank-1]}" viewBox="0 0 32 38" role="img" aria-label="${rank}${ordinal(rank)} place"><path d="M8 4h16v10c0 5-3.6 8.5-8 8.5S8 19 8 14z" fill="currentColor"/><path d="M8 7H3v4c0 3.8 2.8 6.5 6.4 6.5M24 7h5v4c0 3.8-2.8 6.5-6.4 6.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M13 23h6v6h4v4H9v-4h4z" fill="currentColor"/><text x="16" y="17" fill="#fffdf8" font-size="10" font-weight="800" text-anchor="middle">${rank}</text></svg>`;
     Promise.all([loadJson('games.json'),loadJson('players.json')])
       .then(([games,profiles])=>{
         const played=games.filter(game=>game.players.includes(name));
         if(!name||!played.length){document.getElementById('missing-player').hidden=false;status.textContent='Choose a player from the game history to see their stats.';document.querySelector('.page').classList.remove('is-loading');return}
         const icon=profiles[name]||profiles.fallback;
         const wins=played.filter(game=>game.winner===name).length;
+        let winRun=0,lossRun=0,longestWin=0,longestLoss=0;played.forEach(game=>{if(game.winner===name){winRun++;lossRun=0;longestWin=Math.max(longestWin,winRun)}else{lossRun++;winRun=0;longestLoss=Math.max(longestLoss,lossRun)}});
         document.title=`${name} — Catan Dice Tracker`;
         document.getElementById('profile-icon').src=icon.icon;
         document.getElementById('profile-icon').alt=`${icon.avatar} avatar`;
@@ -74,16 +89,24 @@
         document.getElementById('wins').textContent=wins;
         document.getElementById('games-played').textContent=played.length;
         document.getElementById('win-percentage').textContent=`${Math.round(wins/played.length*100)}%`;
+        document.getElementById('longest-win-streak').textContent=longestWin;
+        document.getElementById('longest-loss-streak').textContent=longestLoss;
+        document.getElementById('active-loss-streak').textContent=lossRun;
         [[3,'three'],[4,'four'],[5,'five'],[6,'six']].forEach(([size,label])=>{const group=played.filter(game=>game.players.length===size),groupWins=group.filter(game=>game.winner===name).length;document.getElementById(`${label}-player-games`).textContent=group.length;document.getElementById(`${label}-player-wins`).textContent=groupWins;document.getElementById(`${label}-player-percentage`).textContent=group.length?`${Math.round(groupWins/group.length*100)}%`:'—'});
-        const opponents=[...new Set(played.flatMap(game=>game.players.filter(player=>player!==name)))].map(opponent=>({name:opponent,played:played.filter(game=>game.players.includes(opponent)).length,beaten:played.filter(game=>game.players.includes(opponent)&&game.winner===name).length,beatenBy:played.filter(game=>game.winner===opponent).length,profile:profiles[opponent]||profiles.fallback}));
-        const renderLeaderboard=(id,ranked,detail)=>{document.getElementById(id).innerHTML=ranked.slice(0,3).map((opponent,index)=>`<li class="place">${trophyIcon(index+1)}<img class="opponent-avatar" src="${opponent.profile.icon}" alt=""><span class="opponent-detail"><a class="opponent-name" href="player.html?name=${encodeURIComponent(opponent.name)}">${escapeHTML(opponent.name)}</a><span class="opponent-value">${detail(opponent)}</span></span></li>`).join('')};
+        const opponents=[...new Set(played.flatMap(game=>game.players.filter(player=>player!==name)))].map(opponent=>{const gamesTogether=played.filter(game=>game.players.includes(opponent)),beaten=gamesTogether.filter(game=>game.winner===name).length,beatenBy=gamesTogether.filter(game=>game.winner===opponent).length;return{name:opponent,played:gamesTogether.length,beaten,beatenBy,winPercentage:beaten/gamesTogether.length,duoPercentage:(beaten+beatenBy)/gamesTogether.length,profile:profiles[opponent]||profiles.fallback}});
+        const renderLeaderboard=(id,ranked,detail)=>{document.getElementById(id).innerHTML=ranked.length?ranked.slice(0,5).map((opponent,index)=>`<li class="place">${trophyIcon(index+1)}<img class="opponent-avatar" src="${opponent.profile.icon}" alt=""><span class="opponent-detail"><a class="opponent-name" href="player.html?name=${encodeURIComponent(opponent.name)}">${escapeHTML(opponent.name)}</a><span class="opponent-value">${detail(opponent)}</span></span></li>`).join(''):'<li class="opponent-empty">No qualifying opponents yet.</li>'};
         renderLeaderboard('played-with-leaderboard',[...opponents].sort((a,b)=>b.played-a.played||a.name.localeCompare(b.name)),opponent=>`${opponent.played} game${opponent.played===1?'':'s'} together`);
         renderLeaderboard('beaten-leaderboard',[...opponents].sort((a,b)=>b.beaten-a.beaten||b.played-a.played||a.name.localeCompare(b.name)),opponent=>`${opponent.beaten} win${opponent.beaten===1?'':'s'} against`);
-        renderLeaderboard('beaten-by-leaderboard',[...opponents].sort((a,b)=>b.beatenBy-a.beatenBy||b.played-a.played||a.name.localeCompare(b.name)),opponent=>`${opponent.beatenBy} win${opponent.beatenBy===1?'':'s'} against you`);
+        renderLeaderboard('beaten-by-leaderboard',[...opponents].sort((a,b)=>b.beatenBy-a.beatenBy||b.played-a.played||a.name.localeCompare(b.name)),opponent=>`${opponent.beatenBy} loss${opponent.beatenBy===1?'':'es'} to`);
+        const qualifiedOpponents=opponents.filter(opponent=>opponent.played>=3);
+        renderLeaderboard('highest-win-rate-leaderboard',[...qualifiedOpponents].sort((a,b)=>b.winPercentage-a.winPercentage||b.played-a.played||b.beaten-a.beaten||a.name.localeCompare(b.name)),opponent=>`${Math.round(opponent.winPercentage*100)}% · ${opponent.beaten}/${opponent.played} wins`);
+        renderLeaderboard('lowest-win-rate-leaderboard',[...qualifiedOpponents].sort((a,b)=>a.winPercentage-b.winPercentage||b.played-a.played||a.beaten-b.beaten||a.name.localeCompare(b.name)),opponent=>`${Math.round(opponent.winPercentage*100)}% · ${opponent.beaten}/${opponent.played} wins`);
+        renderLeaderboard('power-duo-leaderboard',[...qualifiedOpponents].sort((a,b)=>b.duoPercentage-a.duoPercentage||b.played-a.played||(b.beaten+b.beatenBy)-(a.beaten+a.beatenBy)||a.name.localeCompare(b.name)),opponent=>`${Math.round(opponent.duoPercentage*100)}% · ${opponent.beaten+opponent.beatenBy}/${opponent.played} duo wins`);
         document.getElementById('games-list').innerHTML=played.map(game=>{const won=game.winner===name;return `<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(escapeHTML).join(', ')}</td><td class="result ${won?'won':''}">${won?'Won':'Played'}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`}).join('');
         document.getElementById('profile').hidden=false;
         document.getElementById('summary').hidden=false;
         document.getElementById('opponent-leaderboards').hidden=false;
+        document.getElementById('streak-summary').hidden=false;
         document.getElementById('games-card').hidden=false;
         status.hidden=true;document.querySelector('.page').classList.remove('is-loading');
       })
