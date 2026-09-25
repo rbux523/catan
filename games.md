@@ -31,3 +31,4 @@
 | [Game 27](https://rbux523.github.io/catan/index.html#r=2b58686c7968397a68997a365a8869336582568c5b87a5975c66889348973) | Sep 17, 2026 | Carli, Ryan, Andrew, Dylan | Andrew |
 | [Game 28](https://rbux523.github.io/catan/index.html#r=59c6a687799648c6323978878b9788337769a6b55953a9946989948866683) | Sep 22, 2026 | Will, Andrew, Ryan | Will |
 | [Game 29](https://rbux523.github.io/catan/index.html#r=6c696995a676777724967368365ba67336769734aa73588768555899546) | Sep 22, 2026 | Will, Andrew, Ryan, Dylan | Ryan |
+| [Game 30](https://rbux523.github.io/catan/index.html#r=74bb8665836ba776b7376693a369776478a38944963) | Sep 24, 2026 | Ryan, Dylan, Andrew, Carli, Meghan, Maddie | Ryan |
