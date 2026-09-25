@@ -41,6 +41,12 @@
     .streak-card .streak-copy{margin:0!important;color:var(--muted);font-size:.76rem!important;font-weight:700;text-align:center}
     @media(max-width:560px){.streak-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.streak-card .streak-value{font-size:2.75rem}}
   </style>
+  <style>
+    #games-card .winner{color:var(--muted);font-weight:400}
+    #games-card .winner.current-player-win{color:var(--ink);font-weight:800}
+    .player-link,.player-link:visited{color:inherit;font:inherit;font-weight:inherit;text-decoration:none}
+    .player-link:hover{text-decoration:underline;text-underline-offset:3px}
+  </style>
 </head>
 <body>
   <main class="page is-loading">
@@ -62,7 +68,7 @@
     <section class="card" id="games-card" hidden aria-labelledby="games-heading">
       <h2 id="games-heading">Games played</h2>
       <p>Every recorded game featuring this player.</p>
-      <table><thead><tr><th>Date</th><th>Players</th><th>Result</th><th>Dice tracker</th></tr></thead><tbody id="games-list"></tbody></table>
+      <table><thead><tr><th>Date</th><th>Players</th><th>Winner</th><th>Dice tracker</th></tr></thead><tbody id="games-list"></tbody></table>
     </section>
     <p class="empty" id="status" role="status">Loading player stats…</p>
   </main>
@@ -102,7 +108,8 @@
         renderLeaderboard('highest-win-rate-leaderboard',[...qualifiedOpponents].sort((a,b)=>b.winPercentage-a.winPercentage||b.played-a.played||b.beaten-a.beaten||a.name.localeCompare(b.name)),opponent=>`${Math.round(opponent.winPercentage*100)}% · ${opponent.beaten}/${opponent.played} wins`);
         renderLeaderboard('lowest-win-rate-leaderboard',[...qualifiedOpponents].sort((a,b)=>a.winPercentage-b.winPercentage||b.played-a.played||a.beaten-b.beaten||a.name.localeCompare(b.name)),opponent=>`${Math.round(opponent.winPercentage*100)}% · ${opponent.beaten}/${opponent.played} wins`);
         renderLeaderboard('power-duo-leaderboard',[...qualifiedOpponents].sort((a,b)=>b.duoPercentage-a.duoPercentage||b.played-a.played||(b.beaten+b.beatenBy)-(a.beaten+a.beatenBy)||a.name.localeCompare(b.name)),opponent=>`${Math.round(opponent.duoPercentage*100)}% · ${opponent.beaten+opponent.beatenBy}/${opponent.played} duo wins`);
-        document.getElementById('games-list').innerHTML=played.map(game=>{const won=game.winner===name;return `<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(escapeHTML).join(', ')}</td><td class="result ${won?'won':''}">${won?'Won':'Played'}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`}).join('');
+        const playerLink=player=>`<a class="player-link" href="player.html?name=${encodeURIComponent(player)}">${escapeHTML(player)}</a>`;
+        document.getElementById('games-list').innerHTML=played.map(game=>{const won=game.winner===name;return `<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(playerLink).join(', ')}</td><td class="winner ${won?'current-player-win':''}">${playerLink(game.winner)}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`}).join('');
         document.getElementById('profile').hidden=false;
         document.getElementById('summary').hidden=false;
         document.getElementById('opponent-leaderboards').hidden=false;

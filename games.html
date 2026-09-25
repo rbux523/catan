@@ -43,6 +43,8 @@
     .pair-card h2 small{color:var(--muted);font-size:.68em;font-weight:700;white-space:nowrap}
     .trophy-svg.pewter{color:#467b9d}
     .trophy-svg.copper{color:#4d8a69}
+    .player-link,.player-link:visited{color:inherit;font:inherit;font-weight:inherit;text-decoration:none}
+    .player-link:hover{text-decoration:underline;text-underline-offset:3px}
     @media(max-width:760px){.pair-leaderboards{grid-template-columns:1fr}}
   </style>
 </head>
@@ -87,7 +89,8 @@
         const group=trackedGames.filter(game=>game.players.length===size);
         document.getElementById(id).textContent=group.length?(group.reduce((total,game)=>total+game.rolls.length,0)/group.length).toFixed(1):'—';
       });
-      table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.join(', ')}</td><td class="winner">${game.winner}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`).join('');
+      const playerLink=player=>`<a class="player-link" href="player.html?name=${encodeURIComponent(player)}">${escapeHTML(player)}</a>`;
+      table.querySelector('tbody').innerHTML=games.map(game=>`<tr><td>${formatDate(game.date)}</td><td class="players">${game.players.map(playerLink).join(', ')}</td><td class="winner">${playerLink(game.winner)}</td><td>${game.rolls?`<a class="game-link" href="index.html#r=${game.rolls}">View stats →</a>`:'<span class="pre-tracker">Pre-tracker era</span>'}</td></tr>`).join('');
       const players=[...new Set(games.flatMap(game=>game.players))];
       const streakMetrics=(played,name)=>{let winRun=0,lossRun=0,longestWin=0,longestLoss=0;const winStreaks=[],lossStreaks=[];played.forEach((game,index)=>{if(game.winner===name){if(lossRun)lossStreaks.push({name,count:lossRun,end:index-1});winRun++;lossRun=0;longestWin=Math.max(longestWin,winRun)}else{if(winRun)winStreaks.push({name,count:winRun,end:index-1});lossRun++;winRun=0;longestLoss=Math.max(longestLoss,lossRun)}});if(winRun)winStreaks.push({name,count:winRun,end:played.length-1});if(lossRun)lossStreaks.push({name,count:lossRun,end:played.length-1});return{longestWin,longestLoss,activeLoss:lossRun,winStreaks,lossStreaks}};
       const playerStats=players.map(name=>{const played=games.filter(game=>game.players.includes(name)),wins=played.filter(game=>game.winner===name).length,bySize=Object.fromEntries([3,4,5,6].map(size=>{const group=played.filter(game=>game.players.length===size),groupWins=group.filter(game=>game.winner===name).length;return[size,{played:group.length,wins:groupWins,percentage:group.length?groupWins/group.length:null}]})),streaks=streakMetrics(played,name);return{name,played:played.length,wins,percentage:wins/played.length,bySize,...streaks,profile:profiles[name]||profiles.fallback}});
