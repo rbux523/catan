@@ -229,5 +229,12 @@
     "players": ["Ryan", "Carli", "Renee", "Devarsh", "Jas"],
     "winner": "Ryan",
     "rolls": "6829baa998c68996a4562b69b54778a8a67b6527775898385"
+  },
+  {
+    "id": 34,
+    "date": "2026-09-26",
+    "players": ["Ryan", "Carli", "Renee", "Devarsh", "Jas"],
+    "winner": "Renee",
+    "rolls": "a7667886747675675787a465a65ba8697977877a4666847727a94696b"
   }
 ]
