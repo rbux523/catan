@@ -36,3 +36,4 @@
 | [Game 32](https://rbux523.github.io/catan/index.html#r=56586566966988a7a349a688a868599649356966748846) | Sep 25, 2026 | Ryan, Andrew, Carli, Renee | Ryan |
 | [Game 33](https://rbux523.github.io/catan/index.html#r=6829baa998c68996a4562b69b54778a8a67b6527775898385) | Sep 26, 2026 | Ryan, Carli, Renee, Devarsh, Jas | Ryan |
 | [Game 34](https://rbux523.github.io/catan/index.html#r=a7667886747675675787a465a65ba8697977877a4666847727a94696b) | Sep 26, 2026 | Ryan, Carli, Renee, Devarsh, Jas | Renee |
+| [Game 35](https://rbux523.github.io/catan/index.html#r=b88578853937b75375b76a354a96ba784863a377872ca744ca43453684bb) | Oct 3, 2026 | JJ, Christian, Andrew, Ryan | Christian |
