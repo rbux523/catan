@@ -40,3 +40,4 @@
 | [Game 36](https://rbux523.github.io/catan/index.html#r=8695978548ca7787968c5896b6b47966395b698645bb6) | Oct 8, 2026 | Andrew, Will, Jacob, Sammy | Jacob |
 | [Game 37](https://rbux523.github.io/catan/index.html#r=888c78425677a694446342acbab82878c7a89665a57567888897ca777b7584695379665) | Oct 8, 2026 | Andrew, Jacob, Will | Will |
 | [Game 38](https://rbux523.github.io/catan/index.html#r=7767846a33285586597c6777b45284a8768947b49653b3694a56) | Oct 9, 2026 | Ryan, Dylan, Will, Andrew | Ryan |
+| [Game 39](https://rbux523.github.io/catan/index.html#r=779685a55c369667a4b93c26a959b665ba5955595464) | Oct 9, 2026 | Ryan, Dylan, Will, Andrew | Ryan |
