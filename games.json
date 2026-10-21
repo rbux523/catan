@@ -278,5 +278,12 @@
     "players": ["Ryan", "Tyler", "Emily"],
     "winner": "Emily",
     "rolls": "775a67627796996868958aa45aa948b79b794834cc6c895792464a9a827576992777477"
+  },
+  {
+    "id": 41,
+    "date": "2026-10-20",
+    "players": ["Ryan", "Andrew", "Will", "Mike", "Jacob"],
+    "winner": "Ryan",
+    "rolls": "5aaa76695468777785b774847434b995846636aa9699453"
   }
 ]
