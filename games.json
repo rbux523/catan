@@ -313,5 +313,12 @@
     "players": ["Jacob", "Andrew", "Mike", "Dino"],
     "winner": "Jacob",
     "trackerStatus": "Andrew tried"
+  },
+  {
+    "id": 46,
+    "date": "2026-11-08",
+    "players": ["Carli", "Renee", "Jacob", "Isa", "Andrew"],
+    "winner": "Carli",
+    "rolls": "9794584a864974975576865a577757a557a686a74a846985658628a8b6a"
   }
 ]
