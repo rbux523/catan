@@ -48,3 +48,4 @@
 | [Game 44](https://rbux523.github.io/catan/index.html#r=57345ba6b8898766987762b8687776288a769ab979785477448aa5b75) | Nov 1, 2026 | Ryan, Carli, Andrew | Ryan |
 | Game 45 (Andrew tried) | Nov 5, 2026 | Jacob, Andrew, Mike, Dino | Jacob |
 | [Game 46](https://rbux523.github.io/catan/index.html#r=9794584a864974975576865a577757a557a686a74a846985658628a8b6a) | Nov 8, 2026 | Carli, Renee, Jacob, Isa, Andrew | Carli |
+| [Game 47](https://rbux523.github.io/catan/index.html#r=888278866878496a9868566477778945a467747a4b95c776566a74a937a6c3b79b96539) | Nov 9, 2026 | Ryan, Andrew, Carli | Ryan |
