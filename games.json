@@ -362,5 +362,12 @@
     "players": ["Ryan", "Andrew", "Meghan", "Carli"],
     "winner": "Ryan",
     "rolls": "bb77673645557a54288c87aa6a645a4c796886497974583"
+  },
+  {
+    "id": 53,
+    "date": "2026-11-14",
+    "players": ["Ryan", "Andrew", "Meghan", "Carli"],
+    "winner": "Andrew",
+    "rolls": "67637557468888287bcaab42545897978474b66644849"
   }
 ]

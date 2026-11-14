@@ -54,3 +54,4 @@
 | [Game 50](https://rbux523.github.io/catan/index.html#r=7b693669469657a7a959c95b9479758463499a6988b558c7845536a) | Nov 11, 2026 | Ryan, Carli, Andrew | Andrew |
 | [Game 51](https://rbux523.github.io/catan/index.html#r=48777a5a47796644435969ac887854a6c6669a9a26797885ab9756a67539a957) | Nov 14, 2026 | Ryan, Andrew, Meghan, Carli | Ryan |
 | [Game 52](https://rbux523.github.io/catan/index.html#r=bb77673645557a54288c87aa6a645a4c796886497974583) | Nov 14, 2026 | Ryan, Andrew, Meghan, Carli | Ryan |
+| [Game 53](https://rbux523.github.io/catan/index.html#r=67637557468888287bcaab42545897978474b66644849) | Nov 14, 2026 | Ryan, Andrew, Meghan, Carli | Andrew |
